@@ -1,5 +1,5 @@
 # Merode
-
+[![Build](https://github.com/AmaVic/merode/actions/workflows/build.yml/badge.svg)](https://github.com/AmaVic/merode/actions/workflows/build.yml)
 ## Overview
 This is a tool that enables the execution of Merode models using an interpretative approach.
 Based on a Merode model specification (.mxp) file, the tool enables:
