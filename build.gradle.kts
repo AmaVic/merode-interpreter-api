@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.0"
+    id("org.jetbrains.dokka") version "1.8.20"
     application
 }
 
@@ -19,6 +20,10 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.dokkaHtml {
+    outputDirectory.set(rootDir.resolve("docs/"))
 }
 
 kotlin {
