@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
 
     //States
     val InitialCustomerState = State.Initial
-    val CreatedCustomerState = State("Created")
+    val CreatedCustomerState = State("Created", State.Type.Living)
 
     //StateMachines
     val customerFSM = StateMachine(setOf(

@@ -26,7 +26,7 @@ fun testObjectType(): BusinessObjectType {
     )
 
     val InitialCustomerState = State.Initial
-    val CreatedCustomerState = State("Created")
+    val CreatedCustomerState = State("Created", State.Type.Living)
 
     val customerFSM = StateMachine(
         setOf(
