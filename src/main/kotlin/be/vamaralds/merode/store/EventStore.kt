@@ -9,10 +9,10 @@ import be.vamaralds.merode.instance.Event
  */
 interface EventStore {
     /**
-     * Assigns a new id to the [Event] and stores it in this [EventStore].
+     * Creates a new copy of the [event] with a new id and stores it in this [EventStore].
      * @param event The [Event] to store.
-     * @return The [Event] with the new id if it was successfully appended
-     * @return A [StoreError] if the [Event] could not be appended
+     * @return A copy of [event] with the new id if it was successfully appended
+     * @return A [StoreError] if the [event] could not be appended
      */
     suspend fun append(event: Event): Either<StoreError, Event>
 

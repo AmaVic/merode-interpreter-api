@@ -118,6 +118,14 @@ $dokka.location:be.vamaralds.merode.model/Transition/fromState/#/PointingToDecla
 $dokka.location:be.vamaralds.merode.model/Transition/onEventType/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-transition/on-event-type.html
 $dokka.location:be.vamaralds.merode.model/Transition/toState/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-transition/to-state.html
 $dokka.location:be.vamaralds.merode.store////PointingToDeclaration/merode/be.vamaralds.merode.store/index.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore///PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/index.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/addNew/#be.vamaralds.merode.instance.BusinessObject/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/add-new.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/delete/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/delete.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/exists/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/exists.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/get/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/get.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/getAll/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/get-all.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/size/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/size.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/update/#be.vamaralds.merode.instance.BusinessObject/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/update.html
 $dokka.location:be.vamaralds.merode.store/EventStore///PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/index.html
 $dokka.location:be.vamaralds.merode.store/EventStore/append/#be.vamaralds.merode.instance.Event/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/append.html
 $dokka.location:be.vamaralds.merode.store/EventStore/exists/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/exists.html
