@@ -117,7 +117,28 @@ $dokka.location:be.vamaralds.merode.model/Transition/Transition/#be.vamaralds.me
 $dokka.location:be.vamaralds.merode.model/Transition/fromState/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-transition/from-state.html
 $dokka.location:be.vamaralds.merode.model/Transition/onEventType/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-transition/on-event-type.html
 $dokka.location:be.vamaralds.merode.model/Transition/toState/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-transition/to-state.html
+$dokka.location:be.vamaralds.merode.store////PointingToDeclaration/merode/be.vamaralds.merode.store/index.html
+$dokka.location:be.vamaralds.merode.store/EventStore///PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/index.html
+$dokka.location:be.vamaralds.merode.store/EventStore/append/#be.vamaralds.merode.instance.Event/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/append.html
+$dokka.location:be.vamaralds.merode.store/EventStore/exists/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/exists.html
+$dokka.location:be.vamaralds.merode.store/EventStore/get/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/get.html
+$dokka.location:be.vamaralds.merode.store/EventStore/getAll/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/get-all.html
+$dokka.location:be.vamaralds.merode.store/EventStore/getEventsForBusinessObject/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/get-events-for-business-object.html
+$dokka.location:be.vamaralds.merode.store/EventStore/size/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/size.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore///PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/index.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/MemoryEventStore/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/-memory-event-store.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/append/#be.vamaralds.merode.instance.Event/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/append.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/exists/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/exists.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/get/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/get.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/getAll/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/get-all.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/getEventsForBusinessObject/#kotlin.Long/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/get-events-for-business-object.html
+$dokka.location:be.vamaralds.merode.store/MemoryEventStore/size/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-memory-event-store/size.html
+$dokka.location:be.vamaralds.merode.store/RecordNotFoundError///PointingToDeclaration/merode/be.vamaralds.merode.store/-record-not-found-error/index.html
+$dokka.location:be.vamaralds.merode.store/RecordNotFoundError/RecordNotFoundError/#kotlin.String?/PointingToDeclaration/merode/be.vamaralds.merode.store/-record-not-found-error/-record-not-found-error.html
+$dokka.location:be.vamaralds.merode.store/StoreError///PointingToDeclaration/merode/be.vamaralds.merode.store/-store-error/index.html
+$dokka.location:be.vamaralds.merode.store/StoreError/StoreError/#kotlin.String?/PointingToDeclaration/merode/be.vamaralds.merode.store/-store-error/-store-error.html
 be.vamaralds.merode.common
 be.vamaralds.merode.instance
 be.vamaralds.merode.model
+be.vamaralds.merode.store
 
