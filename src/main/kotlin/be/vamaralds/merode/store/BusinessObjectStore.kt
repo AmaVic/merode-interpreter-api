@@ -12,6 +12,7 @@ interface BusinessObjectStore {
      * Creates a new copy of the [BusinessObject] with a new id and stores it in this [BusinessObjectStore].
      * @param obj The [BusinessObject] to store.
      * @return A copy of the [obj] with the new id if it was successfully added
+     * @return A [DuplicateRecordError] if the [obj] already exists in this [EventStore] (based on [obj.id])
      * @return A [StoreError] if the [obj] could not be appended
      */
     suspend fun addNew(obj: BusinessObject): Either<StoreError, BusinessObject>

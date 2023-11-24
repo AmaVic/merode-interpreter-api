@@ -41,7 +41,7 @@ class MemoryEventStoreTest {
             val contained = eventStore.exists(0)
             assert(contained.isRight())
             contained.map { isIn ->
-                assert(!isIn) { "Expected event to be contained, but it is not" }
+                assert(!isIn) { "Expected event not to be contained, but it is" }
             }
         }
     }
