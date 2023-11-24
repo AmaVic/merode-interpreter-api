@@ -6,8 +6,17 @@ import arrow.core.raise.ensure
 import be.vamaralds.merode.model.Attribute
 import kotlin.reflect.typeOf
 
+/**
+ * Represents the value of an [Attribute] in a [BusinessObject].
+ * @param attribute The [Attribute] of which this [Property] is a value.
+ * @param value The value of this [Property].
+ */
 data class Property(val attribute: Attribute, val value: AttributeValue) {
     companion object {
+        /**
+         * @return A new [Property] with the provided [attribute] and [value], if the value is of the corresponding [Attribute.Type].
+         * @return A [PropertyTypeError] if the value is not of the corresponding [Attribute.Type].
+         */
         fun<T> property(attribute: Attribute, value: T?): Either<PropertyTypeError, Property> = either {
             when {
                 value is String? && attribute.type == Attribute.Type.String -> Property(attribute, AttributeValue.StringValue(value))

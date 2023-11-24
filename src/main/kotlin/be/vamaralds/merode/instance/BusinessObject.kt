@@ -2,6 +2,7 @@ package be.vamaralds.merode.instance
 
 import arrow.core.*
 import arrow.core.raise.either
+import arrow.core.raise.ensure
 import arrow.core.raise.mapOrAccumulate
 import arrow.core.raise.zipOrAccumulate
 import arrow.fx.coroutines.parMapOrAccumulate
@@ -11,14 +12,29 @@ import be.vamaralds.merode.model.BusinessObjectType
 import be.vamaralds.merode.model.State
 import java.lang.ClassCastException
 
+/**
+ * [BusinessObject]s are instances of [BusinessObjectType]s.
+ * @param type The [BusinessObjectType] of this [BusinessObject].
+ * @param id The unique ID of this [BusinessObject].
+ * @param state The current [State] of this [BusinessObject].
+ * @param properties The set of [Property] of this [BusinessObject]. There is one [Property] for each [Attribute] of the [type]. By default, all [Property]s are set to null.
+ */
 data class BusinessObject(
     val type: BusinessObjectType,
     val id: Long,
     val state: State,
     private val properties: Set<Property> = emptySet(),
 ) {
+    /**
+     * A map of the [properties] of this [BusinessObject] by their [Attribute.name].
+     */
     private val propertiesByName: Map<String, Property> by lazy { properties.associateBy { it.attribute.name } }
 
+    /**
+     * @return The [Property] named [propertyName] of this [BusinessObject], if it exists
+     * @return A [PropertyNotFoundError] if the [Property] does not exist in this [BusinessObject]
+     * @return A [PropertyTypeError] if the [Property] exists but its value is not of type [T]
+     */
     operator fun<T> get(propertyName: String): Either<InstanceError, T?> = either {
         val property = propertiesByName[propertyName] ?: raise(PropertyNotFoundError(propertyName, type.name))
 
@@ -31,7 +47,17 @@ data class BusinessObject(
         typedValue
     }
 
+    /**
+     * This method applies an [Event] to this [BusinessObject], potentially changing its [state] and [properties].
+     * The new [state] is derived by using the [type]'s [StateMachine] to determine the next [State] for the [state] and [Event.type].
+     * The new property values are updated if they are provided in the [Event.properties] map. Otherwise, the old values are kept.
+     *
+     * @return A new [BusinessObject] with the updated [state] and [properties].
+     * @return A [NonEmptyList] of [EventHandlingError]s if the [Event] cannot be applied to this [BusinessObject].
+     */
     fun handleEvent(event: Event): EitherNel<EventHandlingError, BusinessObject> = either {
+        ensure(event.objectId == id) { EventHandlingError("Event $event is not targeted at this object").nel() }
+
         val currentProperties = this@BusinessObject.properties.associateBy { it.attribute.name }
         val eventProperties = event.properties.associateBy { it.attribute.name }
         val propertiesNames = currentProperties.keys

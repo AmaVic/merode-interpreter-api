@@ -4,20 +4,44 @@ import arrow.core.*
 import arrow.core.raise.either
 import be.vamaralds.merode.instance.*
 
+/**
+ * Represents a [BusinessObjectType] in the Merode [Model].
+ * @param name The name of the [BusinessObjectType].
+ * @param stateMachine The [StateMachine] defining the behavior of the [BusinessObjectType] instances ([BusinessObject]s).
+ * @param attributes The user-defined [Attribute]s of the [BusinessObjectType], representing its data structure
+ */
 data class BusinessObjectType(val name: String, val stateMachine: StateMachine? = null, val attributes: Set<Attribute> = emptySet()) {
+    /**
+     * A map of the [attributes] of this [BusinessObjectType] by their [Attribute.name].
+     */
+    private val attributesByName: Map<String, Attribute> by lazy {
+        attributes.associateBy {
+            it.name
+        }}
+
+    /**
+     * Creates a new [BusinessObjectType] with the provided [name] and [attributes] (empty by default). The created [BusinessObjectType] will not have a [StateMachine]. It must be set using the [stateMachine] method.
+     */
     constructor(name: String, attributes: Set<Attribute> = emptySet()): this(name, null, attributes)
 
+    /**
+     * @return a copy of this [BusinessObjectType], to which [stateMachine] is used to define the object behavior.
+     */
     fun stateMachine(stateMachine: StateMachine): BusinessObjectType =
         this.copy(stateMachine = stateMachine)
 
-    private val attributesByName: Map<String, Attribute> by lazy {
-        attributes.associateBy {
-        it.name
-    }}
-
+    /**
+     * @return The [Attribute] named [name] of this [BusinessObjectType], if it exists
+     * @return An [AttributeNotFoundError] if the [Attribute] does not exist in this [BusinessObjectType]
+     */
     fun attribute(name: String): Either<AttributeNotFoundError, Attribute> =
         attributesByName[name]?.right() ?: AttributeNotFoundError(name, this.name).left()
 
+    /**
+     * This method enables the creation of instances of this [BusinessObjectType]. It should be used to create new [BusinessObject]s of this [BusinessObjectType] to which no [Event] has been applied yet.
+     * @return If the provided property values are valid, returns a new [BusinessObject] of this [BusinessObjectType] with the provided property values ([propsValues]). [Attribute]s without a value will be set to null. The [BusinessObject.id] is set to -1, and the [BusinessObject.state] is set to [State.Initial].
+     * @return A [NonEmptyList] of [InstanceError]s if one of the provided property values in invalid.
+     */
     operator fun invoke(): EitherNel<InstanceError, BusinessObject> =
         this(-1, State.Initial)
 

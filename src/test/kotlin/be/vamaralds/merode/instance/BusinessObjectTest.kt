@@ -36,7 +36,7 @@ class BusinessObjectTest {
     fun `Successfully handle an Event`() {
         val cst = Customer()
         assert(cst.isRight())
-        cst as Either.Right
+        val obj = (cst as Either.Right).value.copy(id = 0)
 
         val event = Customer.stateMachine!!.eventTypes().first()(0, 0, mapOf(
             "name" to "George",
@@ -48,7 +48,7 @@ class BusinessObjectTest {
         assert(event.isRight())
         event as Either.Right
 
-        val cst2 = cst.value.handleEvent(event.value)
+        val cst2 = obj.handleEvent(event.value)
         assert(cst2.isRight()) { "Expected Customer to be updated, but it failed due to: ${(cst2 as Either.Left).value}" }
         cst2 as Either.Right
 
@@ -86,6 +86,33 @@ class BusinessObjectTest {
         cst as Either.Right
 
         val event = Customer.stateMachine!!.eventTypes()[1](0, 0)
+        assert(event.isRight())
+        event as Either.Right
+
+        val cst2 = cst.value.handleEvent(event.value)
+        assert(cst2.isLeft()) { "Expected Customer to fail to handle event, but it succeeded" }
+    }
+
+    @Test
+    fun `Fail to Handle Event (Invalid Property)`() {
+        val cst = Customer()
+        assert(cst.isRight())
+        cst as Either.Right
+
+        val event = Customer.stateMachine!!.eventTypes()[1](0, 0, mapOf(
+            "x" to "George"
+        ))
+
+        assert(event.isLeft()) { "Expected Customer to fail to handle event, but it succeeded" }
+    }
+
+    @Test
+    fun `Fail to Handle Event (Invalid Target Object)`() {
+        val cst = Customer()
+        assert(cst.isRight())
+        cst as Either.Right
+
+        val event = Customer.stateMachine!!.eventTypes()[1](0, 10)
         assert(event.isRight())
         event as Either.Right
 
