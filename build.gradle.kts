@@ -17,10 +17,10 @@ dependencies {
     implementation("io.arrow-kt:arrow-fx-coroutines:1.2.0")
 
     //MXP Parser
-    implementation("com.sun.xml.bind:jaxb-impl:4.0.2")
-    implementation("com.sun.xml.bind:jaxb-core:4.0.2")
-    implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
-    implementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
+    implementation("com.sun.xml.bind:jaxb-impl:2.3.3")
+    implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
+    implementation("javax.xml.bind:jaxb-api:2.3.0")
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 
     //API - Ktor
     implementation("io.ktor:ktor-server-core-jvm:2.2.4")

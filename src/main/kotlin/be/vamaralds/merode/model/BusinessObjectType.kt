@@ -87,4 +87,17 @@ data class BusinessObjectType(val name: String, val stateMachine: StateMachine? 
         else
             BusinessObject(this, id, state, properties).right()
     }
+
+    override fun toString(): String {
+        val sb = StringBuilder()
+        sb.appendLine(this.name)
+        sb.appendLine("  Attributes:")
+        this.attributes.forEach { attr ->
+            sb.appendLine("    ${attr.name}: ${attr.type.name}")
+        }
+        sb.appendLine("  State Machine Transitions:")
+        sb.appendLine(this.stateMachine)
+
+        return sb.toString()
+    }
 }

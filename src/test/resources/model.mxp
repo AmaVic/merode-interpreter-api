@@ -101,7 +101,7 @@
     </mxp:metaevents>
     <mxp:metaspecialisedevents/>
     <mxp:metadependencies>
-      <mxp:metadependency id="35" name="Customer_Order" type="OPTIONAL_N" master="1" dependent="19" masterrole="Customer" dependentrole="Order"/>
+      <mxp:metadependency id="35" name="Customer_Order" type="OPTIONAL_N" master="1" dependent="19"/>
     </mxp:metadependencies>
     <mxp:metainheritances/>
     <mxp:metamethods>

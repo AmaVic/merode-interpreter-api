@@ -13,7 +13,7 @@ data class State(val name: String, val type: Type) {
          * When a [BusinessObject] is created for the first time, before applying any event to it, it is in an [Initial] state.
          * This [State] is always present in a [StateMachine] and is the same for any [BusinessObjectType].
          */
-        val Initial = State("Initial", Type.Initial)
+        val Initial = State("initial", Type.Initial)
     }
 
     enum class Type {

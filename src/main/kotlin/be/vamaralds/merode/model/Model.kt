@@ -6,15 +6,14 @@ import arrow.core.right
 
 /**
  * Represents a Merode [Model].
- * @param name The name of the [Model].
  * @param objectTypes The [BusinessObjectType]s of the [Model].
  * @param eventTypes The [EventType]s of the [Model].
  */
 data class Model(
-    val name: String,
     val objectTypes: Set<BusinessObjectType>,
 ) {
     val eventTypes = objectTypes.map { it.stateMachine?.eventTypes() ?: emptyList() }.flatten().toSet()
+    val eventTypesByName: Map<String, EventType> by lazy { eventTypes.associateBy { it.name } }
 
     /**
      * @return The [BusinessObjectType] named [name] of this [Model], if it exists

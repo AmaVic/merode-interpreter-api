@@ -95,12 +95,12 @@
     </xs:element>
     <xs:element name="metamultiplepropagationconstraint">
         <xs:complexType>
-        	<xs:sequence>
-        		<xs:element maxOccurs="2" minOccurs="0"
-        			ref="mxp:metapath" />
-        		</xs:sequence>
-        	<xs:attribute name="id" type="xs:integer" use="required" />
-        	<xs:attribute name="type" type="xs:string" use="optional" default="EQUAL_TO" />
+            <xs:sequence>
+                <xs:element maxOccurs="2" minOccurs="0"
+                            ref="mxp:metapath" />
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:integer" use="required" />
+            <xs:attribute name="type" type="xs:string" use="optional" default="EQUAL_TO" />
         </xs:complexType>
     </xs:element>
     <xs:element name="metapath">
@@ -243,15 +243,15 @@
     </xs:element>
     <xs:element name="metadependency">
         <xs:complexType>
-        	<xs:attribute name="id" type="xs:integer" use="required" />
-        	<xs:attribute name="name" type="xs:string" use="required" />
-        	<xs:attribute name="type" type="xs:string" use="required" />
-        	<xs:attribute name="master" type="xs:integer"
-        		use="required" />
-        	<xs:attribute name="dependent" type="xs:integer"
-        		use="required" />
-        	<xs:attribute name="masterrole" type="xs:string" />
-        	<xs:attribute name="dependentrole" type="xs:string" />
+            <xs:attribute name="id" type="xs:integer" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="type" type="xs:string" use="required" />
+            <xs:attribute name="master" type="xs:integer"
+                          use="required" />
+            <xs:attribute name="dependent" type="xs:integer"
+                          use="required" />
+            <xs:attribute name="masterrole" type="xs:string"></xs:attribute>
+            <xs:attribute name="dependentrole" type="xs:string"></xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="metamethods">
@@ -645,8 +645,12 @@
             <xs:attribute name="refid" type="xs:integer" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="metaMPCkind" type="mxp:metaMPCkind" />
+
+
+
+    <xs:element name="metaMPCkind" type="mxp:metaMPCkind"></xs:element>
+
     <xs:complexType name="metaMPCkind">
-    	<xs:attribute name="pathsEqual" type="xs:boolean" />
+        <xs:attribute name="pathsEqual" type="xs:boolean"></xs:attribute>
     </xs:complexType>
 </xs:schema>

@@ -42,4 +42,14 @@ data class StateMachine(private val matrix: Map<State, Map<EventType, State>> = 
      * @return A list of all the [EventType]s that are used in this [StateMachine].
      */
     fun eventTypes(): List<EventType> = matrix.values.flatMap { it.keys }.distinct()
+
+    override fun toString(): String {
+        val sb = StringBuilder()
+        matrix.forEach { (fromState, trsMatrix) ->
+            trsMatrix.forEach { (event, toState) ->
+                sb.append("    ${fromState.name} --${event.name}--> ${toState.name}\n")
+            }
+        }
+        return sb.toString()
+    }
 }
