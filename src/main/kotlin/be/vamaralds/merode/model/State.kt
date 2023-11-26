@@ -5,6 +5,7 @@ import be.vamaralds.merode.instance.BusinessObject
 /**
  * Represents a [State] in a [StateMachine].
  * @param name The name of the [State].
+ * @param type The [Type] of the [State].
  */
 data class State(val name: String, val type: Type) {
     companion object {

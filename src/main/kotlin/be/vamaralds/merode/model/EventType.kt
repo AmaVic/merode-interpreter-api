@@ -11,8 +11,15 @@ import be.vamaralds.merode.instance.Property.Companion.property
  * @param name The name of the [EventType].
  * @param ownerType The [BusinessObjectType] that participates in the [EventType] with an owned method.
  * @param attributes The [Attribute]s of the [EventType]. These are the properties of the [Event]s that can be created from this [EventType].
+ * @param ownerEffect The effect of the [EventType] on the [ownerType]. This can be [OwnedEffect.Create], [OwnedEffect.Modify] or [OwnedEffect.End].
  */
-data class EventType(val name: String, val ownerType: BusinessObjectType, val attributes: Set<Attribute> = ownerType.attributes) {
+data class EventType(val name: String, var ownerType: BusinessObjectType, val ownerEffect: OwnedEffect, val attributes: Set<Attribute> = ownerType.attributes) {
+    enum class OwnedEffect {
+        Create,
+        Modify,
+        End
+    }
+
     /**
      * A map of the [attributes] of this [EventType] by their [Attribute.name].
      */

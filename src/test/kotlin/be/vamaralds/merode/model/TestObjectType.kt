@@ -1,7 +1,6 @@
 package be.vamaralds.merode.model
 
 fun testObjectType(): BusinessObjectType {
-
     val Customer = BusinessObjectType(
         "Customer", setOf(
             Attribute("name", Attribute.Type.String),
@@ -13,14 +12,14 @@ fun testObjectType(): BusinessObjectType {
         )
     )
 
-    val CreateCustomerEvent = EventType("CreateCustomer", Customer)
+    val CreateCustomerEvent = EventType("CreateCustomer", Customer, EventType.OwnedEffect.Create)
     val UpdateCustomerNameEvent = EventType(
-        "UpdateCustomerName", Customer, setOf(
+        "UpdateCustomerName", Customer, EventType.OwnedEffect.Modify, setOf(
             Attribute("name", Attribute.Type.String)
         )
     )
     val BanCustomerEvent = EventType(
-        "BanCustomer", Customer, setOf(
+        "BanCustomer", Customer, EventType.OwnedEffect.End, setOf(
             Attribute("banReason", Attribute.Type.String)
         )
     )

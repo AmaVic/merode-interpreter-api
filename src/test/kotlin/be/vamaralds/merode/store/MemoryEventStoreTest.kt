@@ -70,6 +70,8 @@ class MemoryEventStoreTest {
                 val evtsForBO = eventStore.getEventsForBusinessObject(0).bind()
                 assert(ev1 in evtsForBO) { "Expected event $ev1 to be contained in events for BO, but it is not" }
                 assert(ev2 in evtsForBO) { "Expected event $ev2 to be contained in events for BO, but it is not" } }
+        }.mapLeft {
+            assert(false) { "Expected to retrieve events for BO, but it failed due to: $it" }
         }
     }
 

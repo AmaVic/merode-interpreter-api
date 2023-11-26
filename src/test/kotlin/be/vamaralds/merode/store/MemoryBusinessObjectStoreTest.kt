@@ -100,6 +100,8 @@ class MemoryBusinessObjectStoreTest {
                 val containsObj = store.exists(o1.id).bind()
                 assert(!containsObj) { "Expected object not to be contained after delete, but it is" }
             }
+        }.mapLeft {
+            assert(false) { "Expected to delete object, but it failed due to: $it" }
         }
     }
 }
