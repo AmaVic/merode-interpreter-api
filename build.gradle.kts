@@ -29,6 +29,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:2.2.4")
 
     //Logging
+    implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
     implementation("ch.qos.logback:logback-classic:1.4.11")
 
     //Testing

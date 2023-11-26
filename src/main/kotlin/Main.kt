@@ -27,18 +27,16 @@ fun main() {
                 //"premium" to null
             )).bind()
 
+            val createEvent2 = CreateCustomer(props = mapOf(
+                "email" to "vic@yahoo.fr",
+                "premium" to true
+            )).bind()
+
             val endEvent = EndCustomer(objectId = 0L).bind()
 
             var customer = eventHandler.handleEvent(createEvent).bind()
-            println(customer)
+            eventHandler.handleEvent(createEvent2).bind()
             customer = eventHandler.handleEvent(endEvent).bind()
-            println(customer)
-
-            println("---")
-            println(eventStore.getAll().bind())
-            println(objectStore.getAll().bind())
-
-
         }.mapLeft {
             println("An Error Occurred: $it")
         }

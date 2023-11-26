@@ -8,8 +8,10 @@ import be.vamaralds.merode.model.EventType
 import be.vamaralds.merode.model.Model
 import be.vamaralds.merode.store.BusinessObjectStore
 import be.vamaralds.merode.store.EventStore
+import io.github.oshai.kotlinlogging.KotlinLogging
 
 class EventHandler(private val model: Model, private val eventStore: EventStore, private val objectStore: BusinessObjectStore) {
+    private val logger = KotlinLogging.logger {  }
     /**
      * Attempts to handle the given [event] by applying it to the [BusinessObject] to which it is targeted.
      * If the [event] is successfully applied, the affected [BusinessObject]s are stored/updated in the [BusinessObjectStore] and the [event] is stored in the [EventStore].
@@ -17,12 +19,21 @@ class EventHandler(private val model: Model, private val eventStore: EventStore,
      * @return A [List] of [BusinessObject]s that were affected by the [event] if the operation was successful
      * @return A [List] of [EventHandlingError]s if the operation was not successful
      */
-    suspend fun handleEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> =
-        when (event.type.ownerEffect) {
+    suspend fun handleEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> {
+        logger.info { "Handling Event $event" }
+        val affectedObjects = when (event.type.ownerEffect) {
             EventType.OwnedEffect.Create -> handleCreateEvent(event)
             EventType.OwnedEffect.Modify -> handleModifyEvent(event)
             EventType.OwnedEffect.End -> handleEndEvent(event)
         }
+        logger.info { "Event Successfully Handled. Affected Objects: $affectedObjects" }
+
+        affectedObjects.mapLeft {
+            logger.error { "Event Handling Failed: $it" }
+        }
+
+        return affectedObjects
+    }
 
     private suspend fun handleCreateEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
         ensure(event.type.ownerEffect == EventType.OwnedEffect.Create) { EventHandlingError("Event ${event.type.name} is not a create event").nel() }
