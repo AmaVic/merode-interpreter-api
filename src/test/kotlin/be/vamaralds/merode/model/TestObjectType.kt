@@ -26,12 +26,13 @@ fun testObjectType(): BusinessObjectType {
 
     val InitialCustomerState = State.Initial
     val CreatedCustomerState = State("Created", State.Type.Living)
+    val BannedCustomerState = State("Banned", State.Type.Final)
 
     val customerFSM = StateMachine(
         setOf(
             Transition(CreateCustomerEvent, InitialCustomerState, CreatedCustomerState),
             Transition(UpdateCustomerNameEvent, CreatedCustomerState, CreatedCustomerState),
-            Transition(BanCustomerEvent, CreatedCustomerState, CreatedCustomerState)
+            Transition(BanCustomerEvent, CreatedCustomerState, BannedCustomerState)
         )
     )
 

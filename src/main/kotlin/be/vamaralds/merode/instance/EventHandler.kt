@@ -48,7 +48,6 @@ class EventHandler(private val model: Model, private val eventStore: EventStore,
 
     private suspend fun handleModifyEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
         ensure(event.type.ownerEffect == EventType.OwnedEffect.Modify || event.type.ownerEffect == EventType.OwnedEffect.End) { EventHandlingError("Event ${event.type.name} is not a modify event").nel() }
-        val objectType = model.objectTypes.find { it.name == event.type.ownerType.name }!!
         val objectToModify = objectStore.get(event.objectId)
             .mapLeft { EventHandlingError("Could not retrieve object with id ${event.objectId} from object store").nel() }
             .bind()

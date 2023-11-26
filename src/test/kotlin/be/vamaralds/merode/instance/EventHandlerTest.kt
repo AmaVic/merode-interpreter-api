@@ -5,7 +5,6 @@ import arrow.core.nel
 import arrow.core.raise.either
 import be.vamaralds.merode.model.State
 import be.vamaralds.merode.model.testModel
-import be.vamaralds.merode.model.testObjectType
 import be.vamaralds.merode.store.MemoryBusinessObjectStore
 import be.vamaralds.merode.store.MemoryEventStore
 import kotlinx.coroutines.runBlocking
@@ -50,6 +49,75 @@ class EventHandlerTest {
         }.mapLeft {
             it.forEach { it.printStackTrace() }
             assert(false) { "Event handling failed: $it, but was expected to be successful" }
+        }
+    }
+
+    @Test
+    fun `Successfully Handle a Modify Event`() {
+        either {
+            runBlocking {
+                val createEvent = CreateCustomerEvent(-1, -1, mapOf("name" to "George")).bind()
+                eventHandler.handleEvent(createEvent).bind()
+                val event = UpdateCustomerNameEvent(0, 0, mapOf("name" to "XYZ")).bind()
+                val updatedObj = eventHandler.handleEvent(event).bind()
+                assert(updatedObj.first().get<String>("name").bind() == "XYZ") { "Object was not updated correctly" }
+            }
+        }.mapLeft {
+            assert(false) { "Event handling failed due to $it, but was expected to be successful" }
+        }
+    }
+
+    @Test
+    fun `Successfully Handle an End Event`() {
+        either {
+            runBlocking {
+                val createEvent = CreateCustomerEvent(-1, -1, mapOf("name" to "George")).bind()
+                eventHandler.handleEvent(createEvent).bind()
+                val event = BanCustomerEvent(0, 0, mapOf("banReason" to "Fraud")).bind()
+                val updatedObj = eventHandler.handleEvent(event).bind()
+                assert(updatedObj.first().get<String>("banReason").bind() == "Fraud") { "Object was not updated correctly" }
+            }
+        }.mapLeft {
+            assert(false) { "Event handling failed due to $it, but was expected to be successful" }
+        }
+    }
+
+    @Test
+    fun `Fail to Handle an Event (Invalid Property)`() {
+        either {
+            runBlocking {
+                val createEvent = CreateCustomerEvent(-1, -1, mapOf("name" to true)).bind()
+                eventHandler.handleEvent(createEvent).bind()
+                assert(false) { "Event handling succeeded, but was expected to fail" }
+            }
+        }
+    }
+
+    @Test
+    fun `Fail to Handle an Event (Object Not Found)`() {
+        either {
+            runBlocking {
+                val event = UpdateCustomerNameEvent(-1, -1, mapOf("name" to "George")).bind()
+                eventHandler.handleEvent(event).bind()
+                assert(false) { "Event handling succeeded, but was expected to fail" }
+            }
+        }
+    }
+
+    @Test
+    fun `Fail to Handle an Event (Invalid Transition)`() {
+        either {
+            runBlocking {
+                val createEvent = CreateCustomerEvent(-1, -1, mapOf("name" to "George")).bind()
+                val banEvent = BanCustomerEvent(-1, 0, mapOf("banReason" to "Fraud")).bind()
+                val updateEvent = UpdateCustomerNameEvent(-1, 0, mapOf("name" to "XYZ")).bind()
+
+                eventHandler.handleEvent(createEvent).bind()
+                eventHandler.handleEvent(banEvent).bind()
+                val lst = eventHandler.handleEvent(updateEvent).bind()
+                println(lst)
+                assert(false) { "Event handling succeeded, but was expected to fail" }
+            }
         }
     }
 }

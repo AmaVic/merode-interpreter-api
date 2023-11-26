@@ -35,6 +35,7 @@ data class BusinessObject(
      * @return A [PropertyNotFoundError] if the [Property] does not exist in this [BusinessObject]
      * @return A [PropertyTypeError] if the [Property] exists but its value is not of type [T]
      */
+    @Suppress("UNCHECKED_CAST")
     operator fun<T> get(propertyName: String): Either<InstanceError, T?> = either {
         val property = propertiesByName[propertyName] ?: raise(PropertyNotFoundError(propertyName, type.name))
 
