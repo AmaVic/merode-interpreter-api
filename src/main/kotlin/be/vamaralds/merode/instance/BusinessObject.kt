@@ -10,6 +10,8 @@ import be.vamaralds.merode.instance.Property.Companion.property
 import be.vamaralds.merode.model.Attribute
 import be.vamaralds.merode.model.BusinessObjectType
 import be.vamaralds.merode.model.State
+import kotlinx.serialization.json.JsonObject
+import org.json.JSONObject
 import java.lang.ClassCastException
 
 /**
@@ -99,5 +101,17 @@ data class BusinessObject(
                     .joinToString(", ")
         val builder = StringBuilder("${type.name} $idAndStateAndProps")
         return builder.toString()
+    }
+
+    fun toJsonString(): String {
+        val objMap = mapOf(
+            "id" to id,
+            "type" to type.name,
+            "state" to state.name,
+            "properties" to properties.associate { it.attribute.name to it.value.value }
+        )
+
+        val obj = JSONObject(objMap)
+        return obj.toString()
     }
 }

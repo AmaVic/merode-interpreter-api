@@ -35,6 +35,9 @@ class MemoryBusinessObjectStore: BusinessObjectStore {
     override suspend fun getAll(): Either<StoreError, List<BusinessObject>> =
         objectsById.values.toList().right()
 
+    override suspend fun getAll(typeName: String): Either<StoreError, List<BusinessObject>> =
+        objectsById.values.filter { it.type.name == typeName }.right()
+
     override suspend fun get(id: Long): Either<StoreError, BusinessObject> = either {
         ensure(exists(id).bind()) { RecordNotFoundError("Object with id $id does not exist") }
         objectsById[id]!!

@@ -10,7 +10,7 @@ import be.vamaralds.merode.store.BusinessObjectStore
 import be.vamaralds.merode.store.EventStore
 import io.github.oshai.kotlinlogging.KotlinLogging
 
-class EventHandler(private val model: Model, private val eventStore: EventStore, private val objectStore: BusinessObjectStore) {
+class EventHandler(val model: Model, val eventStore: EventStore, val objectStore: BusinessObjectStore) {
     private val logger = KotlinLogging.logger {  }
     /**
      * Attempts to handle the given [event] by applying it to the [BusinessObject] to which it is targeted.
@@ -19,20 +19,18 @@ class EventHandler(private val model: Model, private val eventStore: EventStore,
      * @return A [List] of [BusinessObject]s that were affected by the [event] if the operation was successful
      * @return A [List] of [EventHandlingError]s if the operation was not successful
      */
-    suspend fun handleEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> {
+    suspend fun handleEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
         logger.info { "Handling Event $event" }
         val affectedObjects = when (event.type.ownerEffect) {
             EventType.OwnedEffect.Create -> handleCreateEvent(event)
             EventType.OwnedEffect.Modify -> handleModifyEvent(event)
             EventType.OwnedEffect.End -> handleEndEvent(event)
-        }
+        }.bind()
         logger.info { "Event Successfully Handled. Affected Objects: $affectedObjects" }
-
-        affectedObjects.mapLeft {
-            logger.error { "Event Handling Failed: $it" }
-        }
-
-        return affectedObjects
+        affectedObjects
+    }.mapLeft {
+        logger.error { "Event Handling Failed: ${it.all}" }
+        it
     }
 
     private suspend fun handleCreateEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
@@ -65,7 +63,7 @@ class EventHandler(private val model: Model, private val eventStore: EventStore,
 
         //Event handling
         val modifiedObject = objectToModify.handleEvent(event)
-            .mapLeft { EventHandlingError("Could not modify object with id ${event.objectId}").nel() }
+            .mapLeft { EventHandlingError("Could not modify object with id ${event.objectId}: ${it.all}").nel() }
             .bind()
 
         //Store modified object

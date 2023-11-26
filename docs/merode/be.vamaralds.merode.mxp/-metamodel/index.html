@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Metamodel</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>merode</span>
+            </a>
+    </div>
+    <div>
+1.0-SNAPSHOT    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="merode::be.vamaralds.merode.mxp/Metamodel///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">merode</a><span class="delimiter">/</span><a href="../index.html">be.vamaralds.merode.mxp</a><span class="delimiter">/</span><span class="current">Metamodel</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Metamodel</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">Metamodel</a></div><p class="paragraph">Java class for anonymous complex type. </p><p class="paragraph">The following schema fragment specifies the expected content contained within this class. </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">&lt;complexType&gt;
+  &lt;complexContent&gt;
+    &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
+      &lt;sequence&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}datatypes&quot; minOccurs=&quot;0&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metaobjects&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metaevents&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metaspecialisedevents&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metadependencies&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metainheritances&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}metamethods&quot;/&gt;
+      &lt;/sequence&gt;
+      &lt;attribute name=&quot;lastid&quot; use=&quot;required&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}integer&quot; /&gt;
+    &lt;/restriction&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1493944614%2FConstructors%2F769193423" anchor-label="Metamodel" id="-1493944614%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-metamodel.html"><span><span>Metamodel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1493944614%2FConstructors%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-2132570333%2FFunctions%2F769193423" anchor-label="getDatatypes" id="-2132570333%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-datatypes.html"><span>get</span><wbr></wbr><span><span>Datatypes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2132570333%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-datatypes.html"><span class="token function">getDatatypes</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-datatypes/index.html">Datatypes</a></div><div class="brief ">Gets the value of the datatypes property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1513661641%2FFunctions%2F769193423" anchor-label="getLastid" id="-1513661641%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-lastid.html"><span>get</span><wbr></wbr><span><span>Lastid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1513661641%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-lastid.html"><span class="token function">getLastid</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a></div><div class="brief ">Gets the value of the lastid property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-538362214%2FFunctions%2F769193423" anchor-label="getMetadependencies" id="-538362214%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metadependencies.html"><span>get</span><wbr></wbr><span><span>Metadependencies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-538362214%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metadependencies.html"><span class="token function">getMetadependencies</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metadependencies/index.html">Metadependencies</a></div><div class="brief ">Gets the value of the metadependencies property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="966331690%2FFunctions%2F769193423" anchor-label="getMetaevents" id="966331690%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metaevents.html"><span>get</span><wbr></wbr><span><span>Metaevents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="966331690%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metaevents.html"><span class="token function">getMetaevents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metaevents/index.html">Metaevents</a></div><div class="brief ">Gets the value of the metaevents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="341522138%2FFunctions%2F769193423" anchor-label="getMetainheritances" id="341522138%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metainheritances.html"><span>get</span><wbr></wbr><span><span>Metainheritances</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="341522138%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metainheritances.html"><span class="token function">getMetainheritances</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metainheritances/index.html">Metainheritances</a></div><div class="brief ">Gets the value of the metainheritances property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="928646309%2FFunctions%2F769193423" anchor-label="getMetamethods" id="928646309%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metamethods.html"><span>get</span><wbr></wbr><span><span>Metamethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="928646309%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metamethods.html"><span class="token function">getMetamethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metamethods/index.html">Metamethods</a></div><div class="brief ">Gets the value of the metamethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-778666621%2FFunctions%2F769193423" anchor-label="getMetaobjects" id="-778666621%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metaobjects.html"><span>get</span><wbr></wbr><span><span>Metaobjects</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-778666621%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metaobjects.html"><span class="token function">getMetaobjects</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metaobjects/index.html">Metaobjects</a></div><div class="brief ">Gets the value of the metaobjects property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1908427556%2FFunctions%2F769193423" anchor-label="getMetaspecialisedevents" id="-1908427556%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-metaspecialisedevents.html"><span>get</span><wbr></wbr><span><span>Metaspecialisedevents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1908427556%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-metaspecialisedevents.html"><span class="token function">getMetaspecialisedevents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-metaspecialisedevents/index.html">Metaspecialisedevents</a></div><div class="brief ">Gets the value of the metaspecialisedevents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1468086489%2FFunctions%2F769193423" anchor-label="setDatatypes" id="1468086489%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-datatypes.html"><span>set</span><wbr></wbr><span><span>Datatypes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1468086489%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-datatypes.html"><span class="token function">setDatatypes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-datatypes/index.html">Datatypes</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the datatypes property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1120796269%2FFunctions%2F769193423" anchor-label="setLastid" id="-1120796269%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-lastid.html"><span>set</span><wbr></wbr><span><span>Lastid</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1120796269%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-lastid.html"><span class="token function">setLastid</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the lastid property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1353164053%2FFunctions%2F769193423" anchor-label="setMetadependencies" id="-1353164053%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metadependencies.html"><span>set</span><wbr></wbr><span><span>Metadependencies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1353164053%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metadependencies.html"><span class="token function">setMetadependencies</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metadependencies/index.html">Metadependencies</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metadependencies property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1287327541%2FFunctions%2F769193423" anchor-label="setMetaevents" id="-1287327541%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metaevents.html"><span>set</span><wbr></wbr><span><span>Metaevents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1287327541%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metaevents.html"><span class="token function">setMetaevents</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metaevents/index.html">Metaevents</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metaevents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1569725291%2FFunctions%2F769193423" anchor-label="setMetainheritances" id="1569725291%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metainheritances.html"><span>set</span><wbr></wbr><span><span>Metainheritances</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1569725291%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metainheritances.html"><span class="token function">setMetainheritances</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metainheritances/index.html">Metainheritances</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metainheritances property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1397814425%2FFunctions%2F769193423" anchor-label="setMetamethods" id="1397814425%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metamethods.html"><span>set</span><wbr></wbr><span><span>Metamethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1397814425%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metamethods.html"><span class="token function">setMetamethods</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metamethods/index.html">Metamethods</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metamethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1091209383%2FFunctions%2F769193423" anchor-label="setMetaobjects" id="-1091209383%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metaobjects.html"><span>set</span><wbr></wbr><span><span>Metaobjects</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1091209383%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metaobjects.html"><span class="token function">setMetaobjects</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metaobjects/index.html">Metaobjects</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metaobjects property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="483883705%2FFunctions%2F769193423" anchor-label="setMetaspecialisedevents" id="483883705%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-metaspecialisedevents.html"><span>set</span><wbr></wbr><span><span>Metaspecialisedevents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="483883705%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-metaspecialisedevents.html"><span class="token function">setMetaspecialisedevents</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-metaspecialisedevents/index.html">Metaspecialisedevents</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the metaspecialisedevents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

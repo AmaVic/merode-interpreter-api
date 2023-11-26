@@ -42,6 +42,12 @@ interface BusinessObjectStore {
     suspend fun getAll(): Either<StoreError, List<BusinessObject>>
 
     /**
+     * @return All [BusinessObject]s of the given [typeName] stored in this [BusinessObjectStore] if they can be successfully retrieved
+     * Returns a [StoreError] if the [BusinessObject]s could not be retrieved
+     */
+    suspend fun getAll(typeName: String): Either<StoreError, List<BusinessObject>>
+
+    /**
      * @return The [BusinessObject] with the given [id] if it exists and can be successfully retrieved
      * @return A [RecordNotFoundError] if the [BusinessObject] does not exist in this [EventStore]
      * @return A [StoreError] if the [BusinessObject] could not be retrieved for another reason

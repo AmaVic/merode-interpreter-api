@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>View</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>merode</span>
+            </a>
+    </div>
+    <div>
+1.0-SNAPSHOT    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="merode::be.vamaralds.merode.mxp/View///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">merode</a><span class="delimiter">/</span><a href="../index.html">be.vamaralds.merode.mxp</a><span class="delimiter">/</span><span class="current">View</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>View</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="index.html">View</a></div><p class="paragraph">Java class for anonymous complex type. </p><p class="paragraph">The following schema fragment specifies the expected content contained within this class. </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">&lt;complexType&gt;
+  &lt;complexContent&gt;
+    &lt;restriction base=&quot;{http://www.w3.org/2001/XMLSchema}anyType&quot;&gt;
+      &lt;sequence&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guidescription&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guiobjects&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guidependencies&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guiinheritances&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guievents&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guiownedmethods&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guiacquiredmethods&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guiinheritedmethods&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guispecialisedmethods&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guifsms&quot; minOccurs=&quot;0&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guistates&quot; minOccurs=&quot;0&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}guitransitions&quot; minOccurs=&quot;0&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}edgview&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}oetview&quot;/&gt;
+        &lt;element ref=&quot;{http://merode.econ.kuleuven.ac.be/mermaid/mxp/1.5}fsmview&quot;/&gt;
+      &lt;/sequence&gt;
+      &lt;attribute name=&quot;id&quot; use=&quot;required&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}integer&quot; /&gt;
+      &lt;attribute name=&quot;name&quot; use=&quot;required&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}string&quot; /&gt;
+      &lt;attribute name=&quot;isdefault&quot; use=&quot;required&quot; type=&quot;{http://www.w3.org/2001/XMLSchema}boolean&quot; /&gt;
+    &lt;/restriction&gt;
+  &lt;/complexContent&gt;
+&lt;/complexType&gt;
+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1540500668%2FConstructors%2F769193423" anchor-label="View" id="-1540500668%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-view.html"><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1540500668%2FConstructors%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1777539278%2FFunctions%2F769193423" anchor-label="getEdgview" id="-1777539278%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-edgview.html"><span>get</span><wbr></wbr><span><span>Edgview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1777539278%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-edgview.html"><span class="token function">getEdgview</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-edgview/index.html">Edgview</a></div><div class="brief ">Gets the value of the edgview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1542252698%2FFunctions%2F769193423" anchor-label="getFsmview" id="1542252698%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-fsmview.html"><span>get</span><wbr></wbr><span><span>Fsmview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1542252698%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-fsmview.html"><span class="token function">getFsmview</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-fsmview/index.html">Fsmview</a></div><div class="brief ">Gets the value of the fsmview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1848695182%2FFunctions%2F769193423" anchor-label="getGuiacquiredmethods" id="-1848695182%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guiacquiredmethods.html"><span>get</span><wbr></wbr><span><span>Guiacquiredmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1848695182%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guiacquiredmethods.html"><span class="token function">getGuiacquiredmethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guiacquiredmethods/index.html">Guiacquiredmethods</a></div><div class="brief ">Gets the value of the guiacquiredmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-194073221%2FFunctions%2F769193423" anchor-label="getGuidependencies" id="-194073221%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guidependencies.html"><span>get</span><wbr></wbr><span><span>Guidependencies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-194073221%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guidependencies.html"><span class="token function">getGuidependencies</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guidependencies/index.html">Guidependencies</a></div><div class="brief ">Gets the value of the guidependencies property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-209795174%2FFunctions%2F769193423" anchor-label="getGuidescription" id="-209795174%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guidescription.html"><span>get</span><wbr></wbr><span><span>Guidescription</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-209795174%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guidescription.html"><span class="token function">getGuidescription</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></div><div class="brief ">Gets the value of the guidescription property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1057978571%2FFunctions%2F769193423" anchor-label="getGuievents" id="1057978571%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guievents.html"><span>get</span><wbr></wbr><span><span>Guievents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1057978571%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guievents.html"><span class="token function">getGuievents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guievents/index.html">Guievents</a></div><div class="brief ">Gets the value of the guievents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1584708175%2FFunctions%2F769193423" anchor-label="getGuifsms" id="-1584708175%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guifsms.html"><span>get</span><wbr></wbr><span><span>Guifsms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1584708175%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guifsms.html"><span class="token function">getGuifsms</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guifsms/index.html">Guifsms</a></div><div class="brief ">Gets the value of the guifsms property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="685811131%2FFunctions%2F769193423" anchor-label="getGuiinheritances" id="685811131%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guiinheritances.html"><span>get</span><wbr></wbr><span><span>Guiinheritances</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="685811131%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guiinheritances.html"><span class="token function">getGuiinheritances</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guiinheritances/index.html">Guiinheritances</a></div><div class="brief ">Gets the value of the guiinheritances property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1618362988%2FFunctions%2F769193423" anchor-label="getGuiinheritedmethods" id="1618362988%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guiinheritedmethods.html"><span>get</span><wbr></wbr><span><span>Guiinheritedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1618362988%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guiinheritedmethods.html"><span class="token function">getGuiinheritedmethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guiinheritedmethods/index.html">Guiinheritedmethods</a></div><div class="brief ">Gets the value of the guiinheritedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2062386690%2FFunctions%2F769193423" anchor-label="getGuiobjects" id="2062386690%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guiobjects.html"><span>get</span><wbr></wbr><span><span>Guiobjects</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2062386690%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guiobjects.html"><span class="token function">getGuiobjects</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guiobjects/index.html">Guiobjects</a></div><div class="brief ">Gets the value of the guiobjects property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1222293943%2FFunctions%2F769193423" anchor-label="getGuiownedmethods" id="1222293943%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guiownedmethods.html"><span>get</span><wbr></wbr><span><span>Guiownedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1222293943%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guiownedmethods.html"><span class="token function">getGuiownedmethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guiownedmethods/index.html">Guiownedmethods</a></div><div class="brief ">Gets the value of the guiownedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1071819436%2FFunctions%2F769193423" anchor-label="getGuispecialisedmethods" id="-1071819436%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guispecialisedmethods.html"><span>get</span><wbr></wbr><span><span>Guispecialisedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1071819436%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guispecialisedmethods.html"><span class="token function">getGuispecialisedmethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guispecialisedmethods/index.html">Guispecialisedmethods</a></div><div class="brief ">Gets the value of the guispecialisedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="106411010%2FFunctions%2F769193423" anchor-label="getGuistates" id="106411010%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guistates.html"><span>get</span><wbr></wbr><span><span>Guistates</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="106411010%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guistates.html"><span class="token function">getGuistates</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guistates/index.html">Guistates</a></div><div class="brief ">Gets the value of the guistates property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-976933864%2FFunctions%2F769193423" anchor-label="getGuitransitions" id="-976933864%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guitransitions.html"><span>get</span><wbr></wbr><span><span>Guitransitions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-976933864%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-guitransitions.html"><span class="token function">getGuitransitions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-guitransitions/index.html">Guitransitions</a></div><div class="brief ">Gets the value of the guitransitions property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1494359200%2FFunctions%2F769193423" anchor-label="getId" id="1494359200%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-id.html"><span>get</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1494359200%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-id.html"><span class="token function">getId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a></div><div class="brief ">Gets the value of the id property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1833583184%2FFunctions%2F769193423" anchor-label="getName" id="-1833583184%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-name.html"><span>get</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1833583184%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-name.html"><span class="token function">getName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></div><div class="brief ">Gets the value of the name property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="94168380%2FFunctions%2F769193423" anchor-label="getOetview" id="94168380%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-oetview.html"><span>get</span><wbr></wbr><span><span>Oetview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="94168380%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-oetview.html"><span class="token function">getOetview</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-oetview/index.html">Oetview</a></div><div class="brief ">Gets the value of the oetview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2096853916%2FFunctions%2F769193423" anchor-label="isIsdefault" id="-2096853916%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-isdefault.html"><span>is</span><wbr></wbr><span><span>Isdefault</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2096853916%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-isdefault.html"><span class="token function">isIsdefault</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief ">Gets the value of the isdefault property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1951654740%2FFunctions%2F769193423" anchor-label="setEdgview" id="-1951654740%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-edgview.html"><span>set</span><wbr></wbr><span><span>Edgview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1951654740%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-edgview.html"><span class="token function">setEdgview</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-edgview/index.html">Edgview</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the edgview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1629017684%2FFunctions%2F769193423" anchor-label="setFsmview" id="-1629017684%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-fsmview.html"><span>set</span><wbr></wbr><span><span>Fsmview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1629017684%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-fsmview.html"><span class="token function">setFsmview</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-fsmview/index.html">Fsmview</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the fsmview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="551330824%2FFunctions%2F769193423" anchor-label="setGuiacquiredmethods" id="551330824%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guiacquiredmethods.html"><span>set</span><wbr></wbr><span><span>Guiacquiredmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="551330824%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guiacquiredmethods.html"><span class="token function">setGuiacquiredmethods</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guiacquiredmethods/index.html">Guiacquiredmethods</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guiacquiredmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-41152308%2FFunctions%2F769193423" anchor-label="setGuidependencies" id="-41152308%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guidependencies.html"><span>set</span><wbr></wbr><span><span>Guidependencies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-41152308%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guidependencies.html"><span class="token function">setGuidependencies</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guidependencies/index.html">Guidependencies</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guidependencies property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1908937481%2FFunctions%2F769193423" anchor-label="setGuidescription" id="1908937481%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guidescription.html"><span>set</span><wbr></wbr><span><span>Guidescription</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1908937481%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guidescription.html"><span class="token function">setGuidescription</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guidescription property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1276270476%2FFunctions%2F769193423" anchor-label="setGuievents" id="1276270476%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guievents.html"><span>set</span><wbr></wbr><span><span>Guievents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1276270476%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guievents.html"><span class="token function">setGuievents</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guievents/index.html">Guievents</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guievents property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="671326348%2FFunctions%2F769193423" anchor-label="setGuifsms" id="671326348%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guifsms.html"><span>set</span><wbr></wbr><span><span>Guifsms</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="671326348%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guifsms.html"><span class="token function">setGuifsms</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guifsms/index.html">Guifsms</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guifsms property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1847437108%2FFunctions%2F769193423" anchor-label="setGuiinheritances" id="-1847437108%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guiinheritances.html"><span>set</span><wbr></wbr><span><span>Guiinheritances</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1847437108%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guiinheritances.html"><span class="token function">setGuiinheritances</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guiinheritances/index.html">Guiinheritances</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guiinheritances property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1629645804%2FFunctions%2F769193423" anchor-label="setGuiinheritedmethods" id="1629645804%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guiinheritedmethods.html"><span>set</span><wbr></wbr><span><span>Guiinheritedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1629645804%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guiinheritedmethods.html"><span class="token function">setGuiinheritedmethods</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guiinheritedmethods/index.html">Guiinheritedmethods</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guiinheritedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-642713304%2FFunctions%2F769193423" anchor-label="setGuiobjects" id="-642713304%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guiobjects.html"><span>set</span><wbr></wbr><span><span>Guiobjects</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-642713304%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guiobjects.html"><span class="token function">setGuiobjects</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guiobjects/index.html">Guiobjects</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guiobjects property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-718740404%2FFunctions%2F769193423" anchor-label="setGuiownedmethods" id="-718740404%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guiownedmethods.html"><span>set</span><wbr></wbr><span><span>Guiownedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-718740404%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guiownedmethods.html"><span class="token function">setGuiownedmethods</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guiownedmethods/index.html">Guiownedmethods</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guiownedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-636246292%2FFunctions%2F769193423" anchor-label="setGuispecialisedmethods" id="-636246292%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guispecialisedmethods.html"><span>set</span><wbr></wbr><span><span>Guispecialisedmethods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-636246292%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guispecialisedmethods.html"><span class="token function">setGuispecialisedmethods</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guispecialisedmethods/index.html">Guispecialisedmethods</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guispecialisedmethods property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-913556436%2FFunctions%2F769193423" anchor-label="setGuistates" id="-913556436%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guistates.html"><span>set</span><wbr></wbr><span><span>Guistates</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-913556436%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guistates.html"><span class="token function">setGuistates</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guistates/index.html">Guistates</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guistates property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-267182252%2FFunctions%2F769193423" anchor-label="setGuitransitions" id="-267182252%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guitransitions.html"><span>set</span><wbr></wbr><span><span>Guitransitions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267182252%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-guitransitions.html"><span class="token function">setGuitransitions</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-guitransitions/index.html">Guitransitions</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the guitransitions property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2113457788%2FFunctions%2F769193423" anchor-label="setId" id="2113457788%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-id.html"><span>set</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2113457788%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-id.html"><span class="token function">setId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the id property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1918121690%2FFunctions%2F769193423" anchor-label="setIsdefault" id="-1918121690%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-isdefault.html"><span>set</span><wbr></wbr><span><span>Isdefault</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1918121690%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-isdefault.html"><span class="token function">setIsdefault</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the isdefault property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="693018143%2FFunctions%2F769193423" anchor-label="setName" id="693018143%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-name.html"><span>set</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="693018143%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-name.html"><span class="token function">setName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the name property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2044013076%2FFunctions%2F769193423" anchor-label="setOetview" id="-2044013076%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-oetview.html"><span>set</span><wbr></wbr><span><span>Oetview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2044013076%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-oetview.html"><span class="token function">setOetview</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../-oetview/index.html">Oetview</a></span></span><span class="token punctuation">)</span></div><div class="brief ">Sets the value of the oetview property.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

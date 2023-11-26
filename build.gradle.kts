@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.0"
     id("org.jetbrains.dokka") version "1.8.20"
+    id("io.ktor.plugin") version "2.3.6"
     application
 }
 
@@ -27,6 +28,10 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm:2.2.4")
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:2.2.4")
     implementation("io.ktor:ktor-server-netty-jvm:2.2.4")
+    implementation("io.ktor:ktor-server-call-logging:2.2.4")
+
+    //Serialization
+    implementation("org.json:json:20231013")
 
     //Logging
     implementation("io.github.oshai:kotlin-logging-jvm:5.1.0")
@@ -47,7 +52,7 @@ tasks.dokkaHtml {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(11)
 }
 
 application {
