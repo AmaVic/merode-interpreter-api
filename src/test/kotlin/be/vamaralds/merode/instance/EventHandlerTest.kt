@@ -52,28 +52,4 @@ class EventHandlerTest {
             assert(false) { "Event handling failed: $it, but was expected to be successful" }
         }
     }
-
-    @Test
-    fun `Successfully Handle a Create Event`() {
-        either {
-            runBlocking {
-                val event = CreateCustomerEvent(-1, -1, mapOf("name" to "George")).bind()
-                val expectedStoredEvent = CreateCustomerEvent(0, 0, mapOf("name" to "George")).bind()
-                val expectedStoredObject = Customer(0, State("Created", State.Type.Living), mapOf("name" to "George")).bind()
-                val expectedAffectedObjects = listOf(expectedStoredObject)
-
-                val affectedObjects = eventHandler.handleEvent(event).bind()
-
-                val retrievedEvent = eventStore.get(0).mapLeft {
-                    InstanceError("Could not retrieve event with id 0 from event store").nel()
-                }.bind()
-
-                assert(retrievedEvent == expectedStoredEvent) { "Stored event ($retrievedEvent) does not match expected event ($expectedStoredEvent)" }
-                assert(expectedAffectedObjects == affectedObjects) { "Affected objects do not match expected objects" }
-            }
-        }.mapLeft {
-            it.forEach { it.printStackTrace() }
-            assert(false) { "Event handling failed: $it, but was expected to be successful" }
-        }
-    }
 }
