@@ -88,12 +88,40 @@ To retrieve all the business objects of a given type (e.g. Customer), use the fo
 ```
 GET /customer
 ```
-The name of the business object type in the URL must start with a lower-case.
+The name of the business object type in the URL must start with a lower-case. Example of (successful) response:
+```json
+[
+   {
+      "id": 0,
+      "state": "ended",
+      "type": "Customer",
+      "properties": {
+         "email": "vic@gmail.com",
+         "premium": false
+      }
+   }
+]
+```
 
 To retrieve a specific business object based on its id (e.g. 0), use the following endpoint:
 ```
 GET /customer/0
 ```
+Example of successful response:
+```json
+{
+   "id": 0,
+   "state": "ended",
+   "type": "Customer",
+   "properties": {
+      "email": "vic@gmail.com",
+      "premium": false
+   }
+}
+```
+
+## Errors
+In case a request sent to the API is not successfully handled, it will respond with a list of (Merode)Error messages.
 
 
 
