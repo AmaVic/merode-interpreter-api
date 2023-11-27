@@ -27,4 +27,75 @@ These are general trade-offs between _interpretation_ vs. _code generation_ appr
 ```
 POST /event
 ```
+The expected request body is a JSON specifying the name of the event type, and the properties used to set attribute values in the created/modified/ended business object. Example:
+```json
+{
+    "type": "EVcrCustomer",
+    "properties": {
+        "email": "vic@gmail.com",
+        "premium": false
+    }
+}
+```
+
+When the event is creating or ending business objects, the id of the object must be specified as "targetId". For example, to ban Customer with 0, updating its premium status at the same time, the following body request can be sent:
+```json
+{
+    "type": "EVendCustomer",
+    "targetId": 0,
+    "properties": {
+        "premium": false
+    }
+}
+```
+
+The properties are optional. The following would just end the Customer with id 0, without updating its attributes values:
+```json
+{
+    "type": "EVendCustomer",
+    "targetId": 0
+}
+```
+
+When an event is successfully handled and stored, the API answers with a list of affected business objects, in JSON format. Example of response for the first example of request body:
+```json
+[
+   {
+      "id": 0,
+      "state": "exists",
+      "type": "Customer",
+      "properties": {
+         "email": "vic@gmail.com",
+         "premium": false
+      }
+   }
+]
+```
+
+## Retrieve Valid Business Events
+The successfully executed business events can be retrieved using:
+```
+GET /event
+```
+
+It returns a (possibly empty) list of events in a JSON format. Example:
+```json
+ TODO
+```
+
+## Retrieve Business Objects of a Given Type
+To retrieve all the business objects of a given type (e.g. Customer), use the following endpoint:
+```
+GET /customer
+```
+The name of the business object type in the URL must start with a lower-case.
+
+To retrieve a specific business object based on its id (e.g. 0), use the following endpoint:
+```
+GET /customer/0
+```
+
+
+
+
 
