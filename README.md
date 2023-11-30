@@ -80,7 +80,22 @@ GET /event
 
 It returns a (possibly empty) list of events in a JSON format. Example:
 ```json
- TODO
+[
+ { "eventId": 0,
+   "type": "EVcrCustomer",
+   "objectId": 0,
+   "properties": {
+      "premium": false,
+      "email": "vic@gmail.com"
+    }
+ },
+ {
+   "eventId": 1,
+   "type": "EVendCustomer",
+   "objectId": 0,
+    "properties": {}
+ }
+]
 ```
 
 ## Retrieve Business Objects of a Given Type
