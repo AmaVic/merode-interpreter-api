@@ -30,7 +30,8 @@ class ApiTest {
 
     init {
         either<MerodeError, Unit> {
-            val parser = Parser(Path("/Users/vamarald/Dev/merode/src/test/resources/model.mxp"))
+            val modelFilePath = this.javaClass.classLoader.getResource("model.mxp")!!.path
+            val parser = Parser(Path(modelFilePath))
             val model = parser.parseModel().bind()
             val eventStore = MemoryEventStore()
             val objectStore = MemoryBusinessObjectStore()
