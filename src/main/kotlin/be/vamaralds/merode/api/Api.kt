@@ -6,7 +6,6 @@ import be.vamaralds.merode.model.Model
 
 object Api {
     var eventHandler: EventHandler? = null
-        private set
 
     fun start(eventHandler: EventHandler, args: Array<String>) {
         Api.eventHandler = eventHandler

@@ -3,6 +3,7 @@ package be.vamaralds.merode.model
 import arrow.core.*
 import arrow.core.raise.either
 import be.vamaralds.merode.instance.*
+import be.vamaralds.merode.serialization.JsonDeserializable
 
 /**
  * Represents a [BusinessObjectType] in the Merode [Model].

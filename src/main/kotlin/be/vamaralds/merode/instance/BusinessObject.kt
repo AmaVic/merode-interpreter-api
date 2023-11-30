@@ -6,10 +6,15 @@ import arrow.core.raise.ensure
 import arrow.core.raise.mapOrAccumulate
 import arrow.core.raise.zipOrAccumulate
 import arrow.fx.coroutines.parMapOrAccumulate
+import be.vamaralds.merode.api.Api
 import be.vamaralds.merode.instance.Property.Companion.property
 import be.vamaralds.merode.model.Attribute
 import be.vamaralds.merode.model.BusinessObjectType
 import be.vamaralds.merode.model.State
+import be.vamaralds.merode.serialization.JsonDeserializable
+import be.vamaralds.merode.serialization.JsonSerializable
+import be.vamaralds.merode.serialization.SerializationError
+import be.vamaralds.merode.serialization.safe
 import kotlinx.serialization.json.JsonObject
 import org.json.JSONObject
 import java.lang.ClassCastException
@@ -26,7 +31,7 @@ data class BusinessObject(
     val id: Long,
     val state: State,
     private val properties: Set<Property> = emptySet(),
-) {
+): JsonSerializable{
     /**
      * A map of the [properties] of this [BusinessObject] by their [Attribute.name].
      */
@@ -103,7 +108,7 @@ data class BusinessObject(
         return builder.toString()
     }
 
-    fun toJsonString(): String {
+    override fun toJsonString(): String {
         val objMap = mapOf(
             "id" to id,
             "type" to type.name,
@@ -113,5 +118,34 @@ data class BusinessObject(
 
         val obj = JSONObject(objMap)
         return obj.toString()
+    }
+
+    companion object: JsonDeserializable<BusinessObject> {
+        override fun fromJsonString(json: String): Either<SerializationError, BusinessObject> = either {
+            safe(json) {
+                val id = this.getLong("id")
+                val typeName = this.getString("type")
+                val type = Api.eventHandler!!.model.objectType(typeName)
+                    .mapLeft { SerializationError(it.toString()) }
+                    .bind()
+                val stateName = this.getString("state")
+                val state = type.stateMachine!!.states().find { it.name == stateName }
+                    ?: raise(SerializationError("State $stateName not found in state machine for type $typeName"))
+                val propertiesMap = this.getJSONObject("properties").toMap()
+                val properties = propertiesMap.map { (name, value) ->
+                    val attribute = type.attributes.find { it.name == name } ?: raise(SerializationError("Attribute $name not found in ObjectType $typeName"))
+                    val property = Property.property(attribute, value)
+                        .mapLeft { SerializationError(it.toString()) }
+                        .bind()
+                    name to property
+                }.toMap()
+
+                return@safe type(id, state, properties.values.toSet())
+                    .mapLeft {
+                        SerializationError(it.all.toString())
+                    }
+                    .bind()
+            }.bind()
+        }
     }
 }

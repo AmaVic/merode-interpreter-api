@@ -13,7 +13,6 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.json.JSONObject
 
 fun Application.configureRouting() {
     routing {
@@ -23,7 +22,7 @@ fun Application.configureRouting() {
                     .mapLeft { MerodeError(it.toString()).nel() }
                     .bind()
 
-                val jsonResponse = "[" + events.joinToString(", ") { it.toString() } + "]"
+                val jsonResponse = "[" + events.joinToString(", ") { it.toJsonString() } + "]"
                 call.respond(HttpStatusCode.OK, jsonResponse)
             }.mapLeft {
                 val errorsList = it.toList()
@@ -33,9 +32,12 @@ fun Application.configureRouting() {
         }
         post("/event") {
             val bodyText = call.receiveText()
-            val newEvent = NewEvent.fromJsonString(bodyText)
             either {
                 val affectedObjects = either {
+                    val newEvent = NewEvent.fromJsonString(bodyText)
+                        .mapLeft { MerodeError(it.toString()).nel() }
+                        .bind()
+
                     val event = newEvent.toEvent(Api.eventHandler!!).bind()
                     Api.eventHandler!!.handleEvent(event).bind()
                 }.bind()

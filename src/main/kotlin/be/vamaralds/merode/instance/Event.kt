@@ -1,8 +1,19 @@
 package be.vamaralds.merode.instance
 
 import arrow.core.Either
+import arrow.core.EitherNel
+import arrow.core.nel
 import arrow.core.raise.either
+import arrow.core.raise.zipOrAccumulate
+import be.vamaralds.merode.api.Api
+import be.vamaralds.merode.common.MerodeError
 import be.vamaralds.merode.model.EventType
+import be.vamaralds.merode.serialization.JsonDeserializable
+import be.vamaralds.merode.serialization.JsonSerializable
+import be.vamaralds.merode.serialization.SerializationError
+import be.vamaralds.merode.serialization.safe
+import org.json.JSONException
+import org.json.JSONObject
 import java.lang.ClassCastException
 
 /**
@@ -12,7 +23,7 @@ import java.lang.ClassCastException
  * @param objectId The id of the [BusinessObject] to which this [Event] is targeted.
  * @param properties The set of [Property] of this [Event]. There is one [Property] for each [Attribute] of the [type]. By default, all [Property]s are set to null.
  */
-data class Event(val type: EventType, val eventId: Long, val objectId: Long, val properties: Set<Property> = emptySet()) {
+data class Event(val type: EventType, val eventId: Long, val objectId: Long, val properties: Set<Property> = emptySet()): JsonSerializable {
     /**
      * A map of the [properties] of this [Event] by their [Attribute.name].
      */
@@ -44,5 +55,44 @@ data class Event(val type: EventType, val eventId: Long, val objectId: Long, val
                     .joinToString(", ")
         val builder = StringBuilder("${type.name} $idAndProps")
         return builder.toString()
+    }
+
+    companion object: JsonDeserializable<Event> {
+        override fun fromJsonString(json: String): Either<SerializationError, Event> = either {
+            safe<Event>(json) {
+                val eventTypeName = this.getString("type")
+                val eventType = Api.eventHandler!!.model.eventTypes.find { it.name == eventTypeName } ?: raise(SerializationError("EventType $eventTypeName not found"))
+                val eventId = try { this.getLong("eventId") } catch (e: JSONException) { -1L }
+                val objectId = try { this.getLong("objectId") } catch(e: JSONException) { -1L }
+                val propertiesMap = this.getJSONObject("properties").toMap()
+                val properties = propertiesMap.map { (name, value) ->
+                    val attribute = eventType.attributes.find { it.name == name } ?: raise(SerializationError("Attribute $name not found in EventType $eventTypeName"))
+                    val property = Property.property(attribute, value)
+                        .mapLeft { SerializationError(it.toString()) }
+                        .bind()
+                    name to property
+                }.toMap()
+
+                return@safe eventType(eventId, objectId, properties)
+                    .mapLeft {
+                        SerializationError(it.all.toString())
+                    }
+                    .bind()
+            }.bind()
+        }
+
+    }
+
+    override fun toJsonString(): String {
+        val jsonObj = JSONObject()
+        jsonObj.put("type", type.name)
+        jsonObj.put("eventId", eventId)
+        jsonObj.put("objectId", objectId)
+        val propertiesJsonObj = JSONObject()
+        properties.forEach { property ->
+            propertiesJsonObj.put(property.attribute.name, property.value.value)
+        }
+        jsonObj.put("properties", propertiesJsonObj)
+        return jsonObj.toString()
     }
 }
