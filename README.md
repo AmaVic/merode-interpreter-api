@@ -38,11 +38,11 @@ The expected request body is a JSON specifying the name of the event type, and t
 }
 ```
 
-When the event is creating or ending business objects, the id of the object must be specified as "targetId". For example, to ban Customer with 0, updating its premium status at the same time, the following body request can be sent:
+When the event is creating or ending business objects, the id of the object must be specified as "objectId". For example, to ban Customer with 0, updating its premium status at the same time, the following body request can be sent:
 ```json
 {
     "type": "EVendCustomer",
-    "targetId": 0,
+    "objectId": 0,
     "properties": {
         "premium": false
     }
@@ -53,7 +53,7 @@ The properties are optional. The following would just end the Customer with id 0
 ```json
 {
     "type": "EVendCustomer",
-    "targetId": 0
+    "objectId": 0
 }
 ```
 
