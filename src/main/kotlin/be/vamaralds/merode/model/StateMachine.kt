@@ -35,9 +35,12 @@ data class StateMachine(private val matrix: Map<State, Map<EventType, State>> = 
      * @return If there is a [Transition] from [currentState] on [event], returns the [State] to which the [Transition] leads ([Transition.toState]).
      * @return Otherwise, returns an [EventHandlingError].
      */
-    fun nextState(currentState: State, event: EventType): Either<EventHandlingError, State> =
-        matrix[currentState]?.get(event)?.right() ?: EventHandlingError("No transition found for event ${event.name} from state ${currentState.name}").left()
+    fun nextState(currentState: State, event: EventType): Either<EventHandlingError, State> {
+        val matchedEventType = eventTypes().find { it.name == event.name } ?: return EventHandlingError("No event with name ${event.name} found in the model").left()
 
+        return matrix[currentState]?.get(matchedEventType)?.right()
+            ?: EventHandlingError("No transition found for event ${event.name} from state ${currentState.name}").left()
+    }
     /**
      * @return A list of all the [EventType]s that are used in this [StateMachine].
      */

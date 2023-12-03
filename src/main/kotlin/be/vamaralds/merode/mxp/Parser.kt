@@ -37,8 +37,9 @@ class Parser(private val mxpFilePath: Path) {
         metamodel!!.metaobjects.metaobject.forEach(::parseBusinessObjectTypeWithoutFSM)
 
         val businessObjectTypes = metamodel!!.metaobjects.metaobject.map { parseBusinessObjectType(it) }.toSet()
+        val dependencies = parseExistenceDependencies(metamodel!!.metadependencies.metadependency)
 
-        Model(businessObjectTypes)
+        Model(businessObjectTypes, dependencies)
     }
 
     private fun parseMxp(): Either<ModelParsingError, Metamodel> = either {
@@ -158,6 +159,25 @@ class Parser(private val mxpFilePath: Path) {
                 Transition(eventType, sourceState, targetState)
             }
         }.flatten()
+    }
+
+    private fun parseExistenceDependencies(deps: List<Metadependency>): Set<ExistenceDependency> =
+        deps.map(::parseExistenceDependency).toSet()
+    private fun parseExistenceDependency(dep: Metadependency): ExistenceDependency {
+        val name = dep.name
+        val masterId = dep.getMaster()
+        val master = objectTypes[masterId]!!
+        val dependentId = dep.getDependent()
+        val dependent = objectTypes[dependentId]!!
+        val typeStr = dep.type
+        val type = when(typeStr) {
+            "OPTIONAL_1" -> ExistenceDependency.Type.OptionalOne
+            "OPTIONAL_N" -> ExistenceDependency.Type.OptionalMany
+            "MANDATORY_1" -> ExistenceDependency.Type.MandatoryOne
+            else -> throw ModelParsingError("Existence Dependency Type: $typeStr is not valid for dependency: $name")
+        }
+
+        return ExistenceDependency(name, master, dependent, type)
     }
 
 }

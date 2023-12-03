@@ -5,17 +5,15 @@ import arrow.core.raise.either
 import arrow.core.raise.ensure
 import arrow.core.raise.mapOrAccumulate
 import arrow.core.raise.zipOrAccumulate
-import arrow.fx.coroutines.parMapOrAccumulate
 import be.vamaralds.merode.api.Api
+import be.vamaralds.merode.common.MerodeError
 import be.vamaralds.merode.instance.Property.Companion.property
-import be.vamaralds.merode.model.Attribute
-import be.vamaralds.merode.model.BusinessObjectType
-import be.vamaralds.merode.model.State
+import be.vamaralds.merode.model.*
 import be.vamaralds.merode.serialization.JsonDeserializable
 import be.vamaralds.merode.serialization.JsonSerializable
 import be.vamaralds.merode.serialization.SerializationError
 import be.vamaralds.merode.serialization.safe
-import kotlinx.serialization.json.JsonObject
+import be.vamaralds.merode.store.BusinessObjectStore
 import org.json.JSONObject
 import java.lang.ClassCastException
 
@@ -30,8 +28,9 @@ data class BusinessObject(
     val type: BusinessObjectType,
     val id: Long,
     val state: State,
-    private val properties: Set<Property> = emptySet(),
-): JsonSerializable{
+    val properties: Set<Property> = emptySet(),
+    val masters: MutableMap<String, BusinessObject> = mutableMapOf()
+): JsonSerializable {
     /**
      * A map of the [properties] of this [BusinessObject] by their [Attribute.name].
      */
@@ -44,15 +43,23 @@ data class BusinessObject(
      */
     @Suppress("UNCHECKED_CAST")
     operator fun<T> get(propertyName: String): Either<InstanceError, T?> = either {
-        val property = propertiesByName[propertyName] ?: raise(PropertyNotFoundError(propertyName, type.name))
+        val foundProperty = propertiesByName.containsKey(propertyName)
 
-        val typedValue = try {
-            property.value.value?.let { it as T }
+        if(!foundProperty)
+            raise(PropertyNotFoundError(propertyName, this@BusinessObject.type.name))
+
+        val foundValue: Property = propertiesByName[propertyName]!!
+
+        try {
+            return@either foundValue.value.value as T
         } catch (e: ClassCastException) {
-            raise(PropertyTypeError(propertyName, type.name, property.value.value!!::class.simpleName ?: "Unknown"))
+            raise(PropertyTypeError(propertyName, type.name, foundValue::class.simpleName ?: "Unknown"))
         }
+    }
 
-        typedValue
+    fun master(dependencyName: String): Either<InstanceError, BusinessObject> = either {
+        ensure(masters.containsKey(dependencyName)) { raise(InstanceError("Master for dependency $dependencyName not found in this object of type (${type.name}")) }
+        masters[dependencyName]!!
     }
 
     /**
@@ -63,7 +70,7 @@ data class BusinessObject(
      * @return A new [BusinessObject] with the updated [state] and [properties].
      * @return A [NonEmptyList] of [EventHandlingError]s if the [Event] cannot be applied to this [BusinessObject].
      */
-    fun handleEvent(event: Event): EitherNel<EventHandlingError, BusinessObject> = either {
+    suspend fun handleEvent(objectStore: BusinessObjectStore, event: Event): EitherNel<EventHandlingError, BusinessObject> = either {
         ensure(event.objectId == id) { EventHandlingError("Event $event is not targeted at this object").nel() }
 
         val currentProperties = this@BusinessObject.properties.associateBy { it.attribute.name }
@@ -86,15 +93,30 @@ data class BusinessObject(
             it.map { EventHandlingError(it.toString()) }
         }
 
+        val masterRefs = event.masterRefs
+        val masters = if(event.type.ownerEffect == EventType.OwnedEffect.Modify || event.type.ownerEffect == EventType.OwnedEffect.End)
+            this@BusinessObject.masters.right()
+        else
+            masterRefs.mapOrAccumulate {
+                val (depName, id) = it
+                val fetchedObject = objectStore.get(id)
+                    .mapLeft { EventHandlingError(it.toString()) }
+                    .bind()
+                depName to fetchedObject
+            }.map {
+                it.values.toMap()
+            }
+
         val nextStateOp: Either<EventHandlingError, State> =
             type.stateMachine?.nextState(state, event.type)
                 ?: EventHandlingError("No state machine defined for type ${type.name}").left()
 
         zipOrAccumulate(
             { resultingProperties.bind().toSet() },
-            { nextStateOp.bind() }
-        ) { p, s ->
-            this@BusinessObject.copy(id = event.objectId, properties = p, state = s)
+            { nextStateOp.bind() },
+            { masters.bind() }
+        ) { p, s, m ->
+            this@BusinessObject.copy(id = event.objectId, properties = p, state = s, masters = m.toMutableMap())
         }
     }
 
@@ -117,17 +139,30 @@ data class BusinessObject(
         )
 
         val obj = JSONObject(objMap)
+
+        val mastersObject = JSONObject()
+        masters.forEach { depName, master ->
+            val jsonMaster = master.toJsonString()
+            val jsonObjectMaster = JSONObject(jsonMaster)
+            mastersObject.put(depName, jsonObjectMaster)
+        }
+
+        obj.put("masters", mastersObject)
+
         return obj.toString()
     }
 
     companion object: JsonDeserializable<BusinessObject> {
+        context(Model)
         override fun fromJsonString(json: String): Either<SerializationError, BusinessObject> = either {
             safe(json) {
                 val id = this.getLong("id")
+
                 val typeName = this.getString("type")
                 val type = Api.eventHandler!!.model.objectType(typeName)
                     .mapLeft { SerializationError(it.toString()) }
                     .bind()
+
                 val stateName = this.getString("state")
                 val state = type.stateMachine!!.states().find { it.name == stateName }
                     ?: raise(SerializationError("State $stateName not found in state machine for type $typeName"))
@@ -140,7 +175,15 @@ data class BusinessObject(
                     name to property
                 }.toMap()
 
-                return@safe type(id, state, properties.values.toSet())
+                val mastersMap = this.getJSONObject("masters").toMap()
+                val masters = mastersMap.map {
+                    val depName = it.key
+                    val masterJson = it.value.toString()
+                    val master = BusinessObject.fromJsonString(masterJson).bind()
+                    depName to master
+                }.toMap()
+
+                return@safe type(id, state, masters, properties.values.toSet())
                     .mapLeft {
                         SerializationError(it.all.toString())
                     }

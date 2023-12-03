@@ -43,14 +43,10 @@ data class EventType(val name: String, var ownerType: BusinessObjectType, val ow
      * @return If the provided property values are valid, returns a new [Event] of this [EventType] with the provided property values ([props]).
      * @return A [NonEmptyList] of [InstanceError]s if one of the provided property values is invalid.
      */
-    operator fun invoke(eventId: Long = -1L, objectId: Long = -1L, props: Map<String, Any?> = emptyMap()): EitherNel<InstanceError, Event> {
+    context(Model)
+    operator fun invoke(eventId: Long = -1L, objectId: Long = -1L, props: Map<String, Any?> = emptyMap(), masterRefs: Map<String, Long> = emptyMap()): EitherNel<InstanceError, Event> {
         val errors: MutableList<InstanceError> = mutableListOf()
         val properties: MutableSet<Property> = mutableSetOf()
-        /*attributes.forEach { attribute ->
-            val property = property(attribute, null)
-            property.map(properties::add)
-                .mapLeft(errors::add)
-        }*/
 
         props.forEach { (name, value) ->
             val attribute = attributesByName[name]
@@ -67,9 +63,14 @@ data class EventType(val name: String, var ownerType: BusinessObjectType, val ow
             }
         }
 
+        val expectedMasterRefs = requiredMasterRefs(this@EventType)
+        if(!masterRefs.keys.containsAll(expectedMasterRefs.keys))
+            errors.add(MissingPropertyError("Missing master references to create an event of type ${this@EventType.name}: ${expectedMasterRefs.keys - masterRefs.keys}"))
+
+
         return if(errors.isNotEmpty())
             errors.toNonEmptyListOrNull()!!.left()
         else
-            Event(this, eventId, objectId, properties).right()
+            Event(this, eventId, objectId, properties, masterRefs).right()
     }
 }

@@ -2,11 +2,11 @@ package be.vamaralds.merode.instance
 
 import arrow.core.Either
 import be.vamaralds.merode.model.State
-import be.vamaralds.merode.model.testObjectType
+import be.vamaralds.merode.model.customerType
 import kotlin.test.Test
 
 class StateMachineTest {
-    private val Customer = testObjectType()
+    private val Customer = customerType()
     private val stateMachine = Customer.stateMachine!!
 
     @Test

@@ -1,6 +1,6 @@
 package be.vamaralds.merode.model
 
-fun testObjectType(): BusinessObjectType {
+fun customerType(): BusinessObjectType {
     val Customer = BusinessObjectType(
         "Customer", setOf(
             Attribute("name", Attribute.Type.String),
@@ -38,3 +38,33 @@ fun testObjectType(): BusinessObjectType {
 
     return Customer.stateMachine(customerFSM)
 }
+
+/*
+fun orderType(): BusinessObjectType {
+    val Order = BusinessObjectType(
+        "Order", setOf(
+            Attribute("date", Attribute.Type.String),
+        )
+    )
+
+    val CreateOrderEvent = EventType("CreateOrder", Order, EventType.OwnedEffect.Create)
+
+    val CancelOrderEvent = EventType("BanCustomer", Order, EventType.OwnedEffect.End, setOf(
+            Attribute("banReason", Attribute.Type.String)
+        )
+    )
+
+    val InitialCustomerState = State.Initial
+    val CreatedCustomerState = State("Created", State.Type.Living)
+    val BannedCustomerState = State("Banned", State.Type.Final)
+
+    val customerFSM = StateMachine(
+        setOf(
+            Transition(CreateCustomerEvent, InitialCustomerState, CreatedCustomerState),
+            Transition(UpdateCustomerNameEvent, CreatedCustomerState, CreatedCustomerState),
+            Transition(BanCustomerEvent, CreatedCustomerState, BannedCustomerState)
+        )
+    )
+
+    return Customer.stateMachine(customerFSM)
+}*/

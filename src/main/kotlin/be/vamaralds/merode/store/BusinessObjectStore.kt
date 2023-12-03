@@ -1,6 +1,9 @@
 package be.vamaralds.merode.store
 
 import arrow.core.Either
+import arrow.core.EitherNel
+import arrow.core.mapOrAccumulate
+import arrow.core.raise.either
 import be.vamaralds.merode.instance.Event
 import be.vamaralds.merode.instance.BusinessObject
 
@@ -25,6 +28,12 @@ interface BusinessObjectStore {
      * @return A [StoreError] if the [BusinessObject] could not be updated
      */
     suspend fun update(obj: BusinessObject): Either<StoreError, BusinessObject>
+
+    suspend fun update(obj: Collection<BusinessObject>): EitherNel<StoreError, List<BusinessObject>> = either {
+        obj.mapOrAccumulate {
+            update(it).bind()
+        }.bind()
+    }
 
     /**
      * Deletes the [BusinessObject] with the given [id] from this [BusinessObjectStore] if it exists.

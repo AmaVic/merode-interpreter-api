@@ -78,10 +78,11 @@ class ApiTest {
 
     @Test
     fun `Successfully Retrieve All Business Events`() = testApplication {
-        runBlocking {
-            either {
-                //Add Events
-                val event1Json = """
+        with(Api.eventHandler!!.model) {
+            runBlocking {
+                either {
+                    //Add Events
+                    val event1Json = """
             {
                 "type": "EVcrCustomer",
                 "properties": {
@@ -89,20 +90,21 @@ class ApiTest {
                 }
             }
             """.trimIndent()
-                val event1 = Event.fromJsonString(event1Json).bind()
-                Api.eventHandler!!.eventStore.append(event1).bind()
-                val expectedEvent = Api.eventHandler!!.eventStore.getAll().bind().first()
-                val response = client.get("/event")
-                assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
-                val responseJsonString = response.bodyAsText()
-                MerodeApplication.logger.info { responseJsonString }
-                val eventsJsonArray = JSONArray(responseJsonString)
-                val events = eventsJsonArray.map { Event.fromJsonString(it.toString()).bind() }
-                assert(events.size == 1) { "There should be 1 event, but there are ${events.size}" }
-                assert(events[0] == expectedEvent) { "The event retrieved (${events[0]}) is not the same as the one added ($expectedEvent)" }
+                    val event1 = Event.fromJsonString(event1Json).bind()
+                    Api.eventHandler!!.eventStore.append(event1).bind()
+                    val expectedEvent = Api.eventHandler!!.eventStore.getAll().bind().first()
+                    val response = client.get("/event")
+                    assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
+                    val responseJsonString = response.bodyAsText()
+                    MerodeApplication.logger.info { responseJsonString }
+                    val eventsJsonArray = JSONArray(responseJsonString)
+                    val events = eventsJsonArray.map { Event.fromJsonString(it.toString()).bind() }
+                    assert(events.size == 1) { "There should be 1 event, but there are ${events.size}" }
+                    assert(events[0] == expectedEvent) { "The event retrieved (${events[0]}) is not the same as the one added ($expectedEvent)" }
+                }
+            }.mapLeft {
+                assert(false) { "Success was expected, but it failed due to: $it" }
             }
-        }.mapLeft {
-            assert(false) { "Success was expected, but it failed due to: $it" }
         }
     }
 
@@ -130,53 +132,58 @@ class ApiTest {
 
     @Test
     fun `Successfully Retrieve a List of Business Objects`() = testApplication {
-        runBlocking {
-            either {
-                val eventJson = """
+        with(Api.eventHandler!!.model) {
+            runBlocking {
+                either {
+                    val eventJson = """
             {
                 "type": "EVcrCustomer",
                 "properties": {
                     "email": "george@gmail.com"
                  }
             }"""
-                val event = Event.fromJsonString(eventJson).bind()
-                val obj = Api.eventHandler!!.handleEvent(event).bind().first()
+                    val event = Event.fromJsonString(eventJson).bind()
+                    val obj = Api.eventHandler!!.handleEvent(event).bind().first()
 
-                val response = client.get("/customer")
-                assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
-                val responseJsonString = response.bodyAsText()
-                val objectsJsonArray = JSONArray(responseJsonString)
-                val retrievedObjects = objectsJsonArray.map {
-                    val objJson = JSONObject(it.toString())
-                    BusinessObject.fromJsonString(objJson.toString()).bind()
+                    val response = client.get("/customer")
+                    assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
+                    val responseJsonString = response.bodyAsText()
+                    val objectsJsonArray = JSONArray(responseJsonString)
+                    val retrievedObjects = objectsJsonArray.map {
+                        val objJson = JSONObject(it.toString())
+                        with(Api.eventHandler!!.model) { BusinessObject.fromJsonString(objJson.toString()).bind() }
+                    }
+                    assert(retrievedObjects.size == 1) { "There should be 1 object, but there are ${retrievedObjects.size}" }
+                    assert(retrievedObjects[0] == obj) { "The object retrieved (${retrievedObjects[0]}) is not the same as the one added ($obj)" }
                 }
-                assert(retrievedObjects.size == 1) { "There should be 1 object, but there are ${retrievedObjects.size}" }
-                assert(retrievedObjects[0] == obj) { "The object retrieved (${retrievedObjects[0]}) is not the same as the one added ($obj)" }
             }
         }
     }
 
     @Test
     fun `Successfully Retrieve a Specific Business Objects`() = testApplication {
-        runBlocking {
-            either {
-                val eventJson = """
+        with(Api.eventHandler!!.model) {
+            runBlocking {
+                either {
+                    val eventJson = """
             {
                 "type": "EVcrCustomer",
                 "properties": {
                     "email": "george@gmail.com"
                  }
             }"""
-                val event = Event.fromJsonString(eventJson).bind()
-                val obj = Api.eventHandler!!.handleEvent(event).bind().first()
+                    val event = Event.fromJsonString(eventJson).bind()
+                    val obj = Api.eventHandler!!.handleEvent(event).bind().first()
 
-                val response = client.get("/customer/0")
-                assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
-                val responseJsonString = response.bodyAsText()
-                val objJson = JSONObject(responseJsonString)
-                val retrievedObj = BusinessObject.fromJsonString(objJson.toString()).bind()
-
-                assert(retrievedObj == obj) { "The object retrieved ($retrievedObj) is not the same as the one added ($obj)" }
+                    val response = client.get("/customer/0")
+                    assert(response.status == HttpStatusCode.OK) { "Status code is ${response.status} but it was expected to be ${HttpStatusCode.OK}" }
+                    val responseJsonString = response.bodyAsText()
+                    val objJson = JSONObject(responseJsonString)
+                    with(Api.eventHandler!!.model) {
+                        val retrievedObj = BusinessObject.fromJsonString(objJson.toString()).bind()
+                        assert(retrievedObj == obj) { "The object retrieved ($retrievedObj) is not the same as the one added ($obj)" }
+                    }
+                }
             }
         }
     }

@@ -2,18 +2,24 @@ package be.vamaralds.merode.store
 
 import arrow.core.Either
 import arrow.core.raise.either
-import be.vamaralds.merode.model.testObjectType
+import be.vamaralds.merode.model.customerType
+import be.vamaralds.merode.model.testModel
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 class MemoryEventStoreTest {
     private var eventStore = MemoryEventStore()
-    private val objType = testObjectType()
+    private val objType = customerType()
 
-    private val event = (testObjectType().stateMachine!!.eventTypes().first()(0, 0, mapOf(
-        "name" to "George"
-    )) as Either.Right).value
+
+    private val event = with(testModel()) {
+        (customerType().stateMachine!!.eventTypes().first()(
+            0, 0, mapOf(
+                "name" to "George"
+            )
+        ) as Either.Right).value
+    }
 
     @BeforeTest
     fun resetEventStore() {

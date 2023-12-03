@@ -7,17 +7,20 @@ import arrow.core.raise.catch
 import arrow.core.raise.either
 import arrow.core.right
 import be.vamaralds.merode.common.MerodeError
+import be.vamaralds.merode.model.Model
 import org.json.JSONException
 import org.json.JSONObject
 
 class SerializationError(message: String) : MerodeError(message)
 
 interface JsonSerializable {
+    context(Model)
     fun toJsonString(): String =
         JSONObject(this).toString()
 }
 
 fun interface JsonDeserializable<T> {
+    context(Model)
     fun fromJsonString(json: String): Either<SerializationError, T>
 }
 

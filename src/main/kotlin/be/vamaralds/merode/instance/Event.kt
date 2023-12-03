@@ -8,6 +8,7 @@ import arrow.core.raise.zipOrAccumulate
 import be.vamaralds.merode.api.Api
 import be.vamaralds.merode.common.MerodeError
 import be.vamaralds.merode.model.EventType
+import be.vamaralds.merode.model.Model
 import be.vamaralds.merode.serialization.JsonDeserializable
 import be.vamaralds.merode.serialization.JsonSerializable
 import be.vamaralds.merode.serialization.SerializationError
@@ -23,7 +24,7 @@ import java.lang.ClassCastException
  * @param objectId The id of the [BusinessObject] to which this [Event] is targeted.
  * @param properties The set of [Property] of this [Event]. There is one [Property] for each [Attribute] of the [type]. By default, all [Property]s are set to null.
  */
-data class Event(val type: EventType, val eventId: Long, val objectId: Long, val properties: Set<Property> = emptySet()): JsonSerializable {
+data class Event(val type: EventType, val eventId: Long, val objectId: Long, val properties: Set<Property> = emptySet(), val masterRefs: Map<String, Long> = emptyMap()): JsonSerializable {
     /**
      * A map of the [properties] of this [Event] by their [Attribute.name].
      */
@@ -48,16 +49,11 @@ data class Event(val type: EventType, val eventId: Long, val objectId: Long, val
     }
 
     override fun toString(): String {
-        val idPropStr = "eventId: $eventId"
-        val objIdPropStr = "objectId: $objectId"
-        val idAndProps = setOf(idPropStr, objIdPropStr) +
-                properties.map { "${it.attribute.name}: ${it.value}" }
-                    .joinToString(", ")
-        val builder = StringBuilder("${type.name} $idAndProps")
-        return builder.toString()
+        return this.toJsonString()
     }
 
     companion object: JsonDeserializable<Event> {
+        context(Model)
         override fun fromJsonString(json: String): Either<SerializationError, Event> = either {
             safe<Event>(json) {
                 val eventTypeName = this.getString("type")
@@ -72,8 +68,9 @@ data class Event(val type: EventType, val eventId: Long, val objectId: Long, val
                         .bind()
                     name to property
                 }.toMap()
+                val masterRefs = this.getJSONObject("masters").toMap() as Map<String, Long>
 
-                return@safe eventType(eventId, objectId, properties)
+                return@safe eventType(eventId, objectId, properties, masterRefs)
                     .mapLeft {
                         SerializationError(it.all.toString())
                     }
@@ -93,6 +90,9 @@ data class Event(val type: EventType, val eventId: Long, val objectId: Long, val
             propertiesJsonObj.put(property.attribute.name, property.value.value)
         }
         jsonObj.put("properties", propertiesJsonObj)
+        val mastersJsonObj = JSONObject(masterRefs)
+        jsonObj.put("masters", mastersJsonObj)
+
         return jsonObj.toString()
     }
 }

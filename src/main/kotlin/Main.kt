@@ -13,7 +13,7 @@ import kotlin.io.path.Path
 
 fun main(args: Array<String>) {
     either<MerodeError, Unit> {
-        val parser = Parser(Path("/Users/vamarald/Dev/merode/src/test/resources/model.mxp"))
+        val parser = Parser(Path("/Users/vamarald/Dev/merode/src/test/resources/model2.mxp"))
         val model = parser.parseModel().bind()
         val eventStore = MemoryEventStore()
         val objectStore = MemoryBusinessObjectStore()
