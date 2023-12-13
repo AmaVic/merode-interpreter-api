@@ -218,14 +218,14 @@ cd build/install/merode/bin
 ```
 Where `<path-to-mxp-file>` is the path to the Merode model file (`.mxp`).
 
-## Using the Latest Binary
-1. Download the latest binary from the [releases](https://github.com/AmaVic/merode/releases/tag/0.0.1)
+## Using the Latest Package
+1. Download the latest package from the [releases](https://github.com/AmaVic/merode/releases/tag/0.0.1)
 2. Unzip the downloaded file
 3. Get into the unzipped directory (merode/bin)
 ```shell
 cd merode/bin
 ```
-5. Run the application
+4. Run the application
 ```shell
 ./merode -m <path-to-mxp-file>
 ```
