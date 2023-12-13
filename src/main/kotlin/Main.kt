@@ -11,16 +11,6 @@ import be.vamaralds.merode.store.MemoryEventStore
 import kotlinx.coroutines.runBlocking
 import kotlin.io.path.Path
 
-fun main(args: Array<String>) {
-    either<MerodeError, Unit> {
-        val parser = Parser(Path("/Users/vamarald/Dev/merode/src/test/resources/model2.mxp"))
-        val model = parser.parseModel().bind()
-        val eventStore = MemoryEventStore()
-        val objectStore = MemoryBusinessObjectStore()
-        val eventHandler = EventHandler(model, eventStore, objectStore)
-
-        Api.start(eventHandler, args)
-    }.mapLeft {
-        MerodeApplication.logger.error { it }
-    }
+suspend fun main(args: Array<String>) {
+    MerodeApplication.start(args)
 }
