@@ -2,6 +2,7 @@ import arrow.core.None
 import arrow.core.raise.either
 import be.vamaralds.merode.MerodeApplication
 import be.vamaralds.merode.api.Api
+import be.vamaralds.merode.cli.StartCommand
 import be.vamaralds.merode.common.MerodeError
 import be.vamaralds.merode.instance.EventHandler
 import be.vamaralds.merode.model.*
@@ -12,5 +13,5 @@ import kotlinx.coroutines.runBlocking
 import kotlin.io.path.Path
 
 suspend fun main(args: Array<String>) {
-    MerodeApplication.start(args)
+    StartCommand(args).main(args)
 }

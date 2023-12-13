@@ -18,8 +18,7 @@ import kotlin.io.path.Path
 object MerodeApplication {
     val logger = KotlinLogging.logger { }
 
-    suspend fun start(args: Array<String>) = either {
-        val modelFilePath = modelFilePath().bind()
+    suspend fun start(modelFilePath: Path, args: Array<String>) = either {
         val parser = Parser(modelFilePath)
         val model = parser.parseModel().bind()
         val eventStore = MemoryEventStore()
@@ -29,24 +28,5 @@ object MerodeApplication {
         Api.start(eventHandler, args)
     }.mapLeft {
         logger.error { it }
-    }
-
-    private fun modelFilePath(): Either<MerodeError, Path> {
-        val envPathString = System.getenv("MODEL_FILE_PATH")
-        val pathSpecified = envPathString != null
-
-        return if(pathSpecified) {
-            val path = Path(envPathString)
-            logger.info { "Starting API based on Model file at ${path.toAbsolutePath()}"}
-
-            if(!path.toFile().exists()) {
-                MerodeError("Model file not found at ${path.toAbsolutePath()}").left()
-            } else {
-                path.right()
-            }
-        } else {
-            logger.info { "No Model file specified. Using default model file" }
-            Path("src/test/resources/model2.mxp").right()
-        }
     }
 }
