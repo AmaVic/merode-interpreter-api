@@ -1,6 +1,7 @@
 package be.vamaralds.merode.instance
 
 import arrow.core.EitherNel
+import arrow.core.mapOrAccumulate
 import arrow.core.nel
 import arrow.core.raise.either
 import arrow.core.raise.ensure
@@ -33,13 +34,39 @@ class EventHandler(val model: Model, val eventStore: EventStore, val objectStore
         it
     }
 
+    private suspend fun propagateEvent(fromObject: BusinessObject, event: Event): EitherNel<EventHandlingError, Map<String, BusinessObject>> = either {
+        val masters = fromObject.masters
+        logger.info { "Propagating Event $event from object: ${fromObject.toJsonString()} to masters: ${masters.map { it.value.type.name}}" }
+
+        val mastersWithEvent = masters.mapOrAccumulate {
+            val masterEvent = event.copy(objectId = it.value.id, masterRefs = emptyMap(), type = event.type.copy(ownerEffect = EventType.OwnedEffect.Modify), properties = emptySet())
+            logger.info { "Specialized as ${masterEvent.toJsonString()} for ${it.value.type.name}"}
+
+            val updatedMaster = it.value.handleEvent(objectStore, masterEvent).bindNel()
+            updatedMaster.also { logger.info { "Updated Master: ${updatedMaster.toJsonString()}" }}
+        }.bind()
+
+        mastersWithEvent
+    }
+
     private suspend fun handleCreateEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
         ensure(event.type.ownerEffect == EventType.OwnedEffect.Create) { EventHandlingError("Event ${event.type.name} is not a create event").nel() }
         val ObjectType = model.objectTypes.find { it.name == event.type.ownerType.name }!!
         var newObject = ObjectType().mapLeft { EventHandlingError("Could not create new object of type ${ObjectType.name}").nel() }.bind()
 
         //Event handling
-        newObject = newObject.handleEvent(event).bind()
+        newObject = newObject.handleEvent(this@EventHandler.objectStore, event).bind()
+
+        //Propagate
+        val updatedObjects = propagateEvent(newObject, event).bind()
+        updatedObjects.forEach {
+            if(newObject.masters.containsKey(it.key))
+                newObject.masters[it.key] = it.value
+        }
+
+        val storedUpdatedObjects = objectStore.update(updatedObjects.values)
+            .mapLeft { EventHandlingError(it.toString()).nel() }
+            .bind()
 
         //Store new object
         newObject = objectStore.addNew(newObject)
@@ -52,18 +79,33 @@ class EventHandler(val model: Model, val eventStore: EventStore, val objectStore
             .mapLeft { EventHandlingError("Could not store event ${newEvent}").nel() }
             .bind()
 
-        listOf(newObject)
+        listOf(newObject) + storedUpdatedObjects
     }
 
     private suspend fun handleModifyEvent(event: Event): EitherNel<EventHandlingError, List<BusinessObject>> = either {
         ensure(event.type.ownerEffect == EventType.OwnedEffect.Modify || event.type.ownerEffect == EventType.OwnedEffect.End) { EventHandlingError("Event ${event.type.name} is not a modify event").nel() }
+        logger.info { "Handling Modify Event ($event) on ${event.objectId}" }
         val objectToModify = objectStore.get(event.objectId)
             .mapLeft { EventHandlingError("Could not retrieve object with id ${event.objectId} from object store").nel() }
             .bind()
+        logger.info { "  -> Retrieved Object: ${objectToModify.toJsonString()}" }
+
 
         //Event handling
-        val modifiedObject = objectToModify.handleEvent(event)
+        val modifiedObject = objectToModify.handleEvent(objectStore, event)
             .mapLeft { EventHandlingError("Could not modify object with id ${event.objectId}: ${it.all}").nel() }
+            .bind()
+        logger.info { "  -> Object after applying event: ${modifiedObject.toJsonString()}"}
+
+        //Propagating
+        val updatedObjects = propagateEvent(modifiedObject, event).bind()
+        updatedObjects.forEach {
+            if(modifiedObject.masters.containsKey(it.key))
+                modifiedObject.masters[it.key] = it.value
+        }
+
+        val storedUpdatedObjects = objectStore.update(updatedObjects.values)
+            .mapLeft { EventHandlingError(it.toString()).nel() }
             .bind()
 
         //Store modified object
@@ -75,6 +117,7 @@ class EventHandler(val model: Model, val eventStore: EventStore, val objectStore
         eventStore.append(event)
             .mapLeft { EventHandlingError("Could not store event ${event}").nel() }
             .bind()
+
 
         listOf(modifiedObject)
     }

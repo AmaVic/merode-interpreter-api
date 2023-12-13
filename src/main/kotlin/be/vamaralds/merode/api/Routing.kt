@@ -31,23 +31,25 @@ fun Application.configureRouting() {
             }
         }
         post("/event") {
-            val bodyText = call.receiveText()
-            either {
-                val affectedObjects = either {
-                    val newEvent = NewEvent.fromJsonString(bodyText)
-                        .mapLeft { MerodeError(it.toString()).nel() }
-                        .bind()
+            with(Api.eventHandler!!.model) {
+                val bodyText = call.receiveText()
+                either {
+                    val affectedObjects = either {
+                        val newEvent = NewEvent.fromJsonString(bodyText)
+                            .mapLeft { MerodeError(it.toString()).nel() }
+                            .bind()
 
-                    val event = newEvent.toEvent(Api.eventHandler!!).bind()
-                    Api.eventHandler!!.handleEvent(event).bind()
-                }.bind()
+                        val event = newEvent.toEvent(Api.eventHandler!!).bind()
+                        Api.eventHandler!!.handleEvent(event).bind()
+                    }.bind()
 
-                val jsonResponse = "[" + affectedObjects.joinToString(", ") { it.toJsonString() } + "]"
-                call.respond(HttpStatusCode.OK, jsonResponse)
-            }.mapLeft { errors ->
-                val errorsList = errors.toList()
-                val errorsJson = "[" + errorsList.joinToString(", ") { it.toString() } + "]"
-                call.respond(HttpStatusCode.BadRequest, errorsJson)
+                    val jsonResponse = "[" + affectedObjects.joinToString(", ") { it.toJsonString() } + "]"
+                    call.respond(HttpStatusCode.OK, jsonResponse)
+                }.mapLeft { errors ->
+                    val errorsList = errors.toList()
+                    val errorsJson = "[" + errorsList.joinToString(", ") { it.toString() } + "]"
+                    call.respond(HttpStatusCode.BadRequest, errorsJson)
+                }
             }
         }
 

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm") version "1.9.0"
     id("org.jetbrains.dokka") version "1.8.20"
@@ -22,6 +24,9 @@ dependencies {
     implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
     implementation("javax.xml.bind:jaxb-api:2.3.0")
     implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
+    implementation("org.glassfish.jaxb:jaxb-runtime:4.0.2")
+    implementation("javax.activation:activation:1.1.1")
+
 
     //API - Ktor
     implementation("io.ktor:ktor-server-core-jvm:2.2.4")
@@ -29,6 +34,9 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:2.2.4")
     implementation("io.ktor:ktor-server-netty-jvm:2.2.4")
     implementation("io.ktor:ktor-server-call-logging:2.2.4")
+
+    //CLI
+    implementation("com.github.ajalt.clikt:clikt:4.2.1")
 
     //Serialization
     implementation("org.json:json:20231013")
@@ -54,9 +62,15 @@ tasks.dokkaHtml {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(8)
 }
 
 application {
     mainClass.set("MainKt")
+}
+
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        freeCompilerArgs = freeCompilerArgs + "-Xcontext-receivers"
+    }
 }

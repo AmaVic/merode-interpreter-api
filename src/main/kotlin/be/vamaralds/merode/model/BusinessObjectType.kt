@@ -2,6 +2,7 @@ package be.vamaralds.merode.model
 
 import arrow.core.*
 import arrow.core.raise.either
+import arrow.core.raise.ensure
 import be.vamaralds.merode.instance.*
 import be.vamaralds.merode.serialization.JsonDeserializable
 
@@ -46,7 +47,8 @@ data class BusinessObjectType(val name: String, val stateMachine: StateMachine? 
     operator fun invoke(): EitherNel<InstanceError, BusinessObject> =
         this(-1, State.Initial)
 
-    operator fun invoke(id: Long, state: State, vararg propsValues: Any?): EitherNel<InstanceError, BusinessObject> = either {
+    context(Model)
+    operator fun invoke(id: Long, state: State, masters: Map<String, BusinessObject>, vararg propsValues: Any?): EitherNel<InstanceError, BusinessObject> = either {
         val attributes = this@BusinessObjectType.attributes
         val values = propsValues.toList()
         if(attributes.size != values.size)
@@ -58,7 +60,24 @@ data class BusinessObjectType(val name: String, val stateMachine: StateMachine? 
             Property.property(attribute, value).bind()
         }.bind().toSet()
 
-        BusinessObject(this@BusinessObjectType, id, state, props)
+        val expectedMasterRefs = masters(this@BusinessObjectType)
+        ensure(expectedMasterRefs.keys.all { it in masters.keys }) {
+            val missing = expectedMasterRefs.keys - masters.keys
+            InstanceError("Missing Masters to Instantiate new ${this@BusinessObjectType.name}: $missing").nel()
+        }
+
+        masters.forEach { providedMaster ->
+            val actualRefName = providedMaster.key
+            val relatedDependency = existenceDependency(actualRefName)
+                .mapLeft { InstanceError(it.toString()).nel() }
+                .bind()
+            val expectedTypeName = relatedDependency.master.name
+            val actualTypeName = providedMaster.value.type.name
+
+            ensure(expectedTypeName == actualTypeName) { InstanceError("Invalid type for master").nel() }
+        }
+
+        BusinessObject(this@BusinessObjectType, id, state, props, masters.toMutableMap())
     }
 
     operator fun invoke(id: Long, state: State = State.Initial, props: Map<String, Any?> = emptyMap()): EitherNel<InstanceError, BusinessObject> {

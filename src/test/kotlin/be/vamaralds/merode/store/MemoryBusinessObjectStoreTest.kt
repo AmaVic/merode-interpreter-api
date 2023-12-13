@@ -3,15 +3,15 @@ package be.vamaralds.merode.store
 import arrow.core.Either
 import arrow.core.raise.either
 import be.vamaralds.merode.model.State
-import be.vamaralds.merode.model.testObjectType
+import be.vamaralds.merode.model.customerType
 import kotlinx.coroutines.runBlocking
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 class MemoryBusinessObjectStoreTest {
     private var store = MemoryBusinessObjectStore()
-    private val obj = (testObjectType()() as Either.Right).value
-    private val obj2 = (testObjectType()(-1, State.Initial, mapOf(
+    private val obj = (customerType()() as Either.Right).value
+    private val obj2 = (customerType()(-1, State.Initial, mapOf(
         "name" to "XXX"
     )) as Either.Right).value
 
