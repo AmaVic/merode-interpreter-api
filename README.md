@@ -208,6 +208,7 @@ cd merode
 ./gradlew installDist
 ```
 This will build the application in the `build/install/merode/bin` directory.
+
 4. Get into the build directory
 ```shell
 cd build/install/merode/bin
