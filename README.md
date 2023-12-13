@@ -14,13 +14,13 @@ Unlike the traditional Merode approach, this tool does not rely on code generati
 This approach has several **benefits**:
 * **Faster Development**: There is no need to re-generate a Merode application for each change in the model. Instead, you just need to restart the Merode Interpreter with the updated model file as input.
 * **Easier Deployment**: Once your Merode Interpreter is deployed, there is no need to de-reploy it for each model change. 
-* **Lower Software Size**: The size of the software (interpreter) does increase with the size of the model.
+* **Smaller Software Size**: The size of the software (interpreter) does increase with the size of the model.
 
 It also has several potential **drawbacks**:
 * **Increased Memory Usage**: As the Merode Interpreter interprets the model at runtime, the memory usage increases with the size of the model. This is not necessarily the case of generated code.
 * **Lower Performance**: As the Merode model is interpreted at runtime for event handling and object instantiation, the interpreter may require more computational resources than generated code.
 
-These are general trade-offs between _interpretation_ vs. _code generation_ approaches. The performance and memory trade-offs depend among others on the implementation of the interpreter and the of the generated code, respectively. We did not yet evaluate or compare the performmance of the REST APIs generated from Merode models vs. REST APIs using the Merode Interpreter.
+These are general trade-offs between _interpretation_ vs. _code generation_ approaches. The performance and memory trade-offs depend among others on the implementation of the interpreter and the of the generated code, respectively. We did not yet evaluate or compare the performance of the REST APIs generated from Merode models vs. REST APIs using the Merode Interpreter.
 
 # REST API Endpoints
 ## Submit Business Events
@@ -38,7 +38,19 @@ The expected request body is a JSON specifying the name of the event type, and t
 }
 ```
 
-When the event is creating or ending business objects, the id of the object must be specified as "objectId". For example, to ban Customer with 0, updating its premium status at the same time, the following body request can be sent:
+```json
+{
+    "type": "EVcrOrder",
+    "properties": {
+      "date": "2021-01-03"
+    },
+    "masters": {
+      "Customer_Order": 0
+    }
+}
+```
+
+When the event is modifying or ending business objects, the id of the object must be specified as "objectId". For example, to ban Customer with 0, updating its premium status at the same time, the following body request can be sent:
 ```json
 {
     "type": "EVendCustomer",
@@ -57,18 +69,39 @@ The properties are optional. The following would just end the Customer with id 0
 }
 ```
 
-When an event is successfully handled and stored, the API answers with a list of affected business objects, in JSON format. Example of response for the first example of request body:
+When an event is successfully handled and stored, the API answers with a list of affected business objects, in JSON format. Example of response for `EVcrOrder` event:
 ```json
 [
-   {
-      "id": 0,
-      "state": "exists",
-      "type": "Customer",
-      "properties": {
-         "email": "vic@gmail.com",
-         "premium": false
-      }
-   }
+    {
+        "masters": {
+            "Customer_Order": {
+                "masters": {},
+                "id": 0,
+                "state": "orderInProgress",
+                "type": "Customer",
+                "properties": {
+                    "premium": false,
+                    "email": "vic@gmail.com"
+                }
+            }
+        },
+        "id": 1,
+        "state": "placed",
+        "type": "Order",
+        "properties": {
+            "date": "2021-01-03"
+        }
+    },
+    {
+        "masters": {},
+        "id": 0,
+        "state": "orderInProgress",
+        "type": "Customer",
+        "properties": {
+            "email": "vic@gmail.com",
+            "premium": false
+        }
+    }
 ]
 ```
 
@@ -81,20 +114,27 @@ GET /event
 It returns a (possibly empty) list of events in a JSON format. Example:
 ```json
 [
- { "eventId": 0,
-   "type": "EVcrCustomer",
-   "objectId": 0,
-   "properties": {
+  {
+    "eventId": 0,
+    "masters": {},
+    "type": "EVcrCustomer",
+    "objectId": 0,
+    "properties": {
       "premium": false,
       "email": "vic@gmail.com"
     }
- },
- {
-   "eventId": 1,
-   "type": "EVendCustomer",
-   "objectId": 0,
-    "properties": {}
- }
+  },
+  {
+    "eventId": 1,
+    "masters": {
+      "Customer_Order": 0
+    },
+    "type": "EVcrOrder",
+    "objectId": 1,
+    "properties": {
+      "date": "2021-01-03"
+    }
+  }
 ]
 ```
 
@@ -106,15 +146,26 @@ GET /customer
 The name of the business object type in the URL must start with a lower-case. Example of (successful) response:
 ```json
 [
-   {
-      "id": 0,
-      "state": "ended",
-      "type": "Customer",
-      "properties": {
-         "email": "vic@gmail.com",
-         "premium": false
-      }
-   }
+  {
+    "masters": {},
+    "id": 0,
+    "state": "orderInProgress",
+    "type": "Customer",
+    "properties": {
+      "email": "vic@gmail.com",
+      "premium": false
+    }
+  },
+  {
+    "masters": {},
+    "id": 2,
+    "state": "registered",
+    "type": "Customer",
+    "properties": {
+      "email": "george@gmail.com",
+      "premium": true
+    }
+  }
 ]
 ```
 
