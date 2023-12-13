@@ -22,6 +22,9 @@ It also has several potential **drawbacks**:
 
 These are general trade-offs between _interpretation_ vs. _code generation_ approaches. The performance and memory trade-offs depend among others on the implementation of the interpreter and the of the generated code, respectively. We did not yet evaluate or compare the performance of the REST APIs generated from Merode models vs. REST APIs using the Merode Interpreter.
 
+## Demonstration
+The following [video](https://youtu.be/zL0SW_27Xxw) shows how to use the Merode Interpreter
+
 # REST API Endpoints
 ## Submit Business Events
 ```

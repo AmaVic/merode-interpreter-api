@@ -6,7 +6,8 @@ $dokka.location:be.vamaralds.merode.api.model////PointingToDeclaration/merode/b
 $dokka.location:be.vamaralds.merode.api.model/NewEvent.Companion///PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/-companion/index.html
 $dokka.location:be.vamaralds.merode.api.model/NewEvent.Companion/fromJsonString/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/-companion/from-json-string.html
 $dokka.location:be.vamaralds.merode.api.model/NewEvent///PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/index.html
-$dokka.location:be.vamaralds.merode.api.model/NewEvent/NewEvent/#kotlin.String#kotlin.Long#kotlin.collections.Map[kotlin.String,kotlin.Any]/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/-new-event.html
+$dokka.location:be.vamaralds.merode.api.model/NewEvent/NewEvent/#kotlin.String#kotlin.Long#kotlin.collections.Map[kotlin.String,kotlin.Any]#kotlin.collections.Map[kotlin.String,kotlin.Long]/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/-new-event.html
+$dokka.location:be.vamaralds.merode.api.model/NewEvent/masters/#/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/masters.html
 $dokka.location:be.vamaralds.merode.api.model/NewEvent/objectId/#/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/object-id.html
 $dokka.location:be.vamaralds.merode.api.model/NewEvent/properties/#/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/properties.html
 $dokka.location:be.vamaralds.merode.api.model/NewEvent/toEvent/#be.vamaralds.merode.instance.EventHandler/PointingToDeclaration/merode/be.vamaralds.merode.api.model/-new-event/to-event.html
@@ -19,6 +20,11 @@ $dokka.location:be.vamaralds.merode.api//module/io.ktor.server.application.Appli
 $dokka.location:be.vamaralds.merode.api/Api///PointingToDeclaration/merode/be.vamaralds.merode.api/-api/index.html
 $dokka.location:be.vamaralds.merode.api/Api/eventHandler/#/PointingToDeclaration/merode/be.vamaralds.merode.api/-api/event-handler.html
 $dokka.location:be.vamaralds.merode.api/Api/start/#be.vamaralds.merode.instance.EventHandler#kotlin.Array[kotlin.String]/PointingToDeclaration/merode/be.vamaralds.merode.api/-api/start.html
+$dokka.location:be.vamaralds.merode.cli////PointingToDeclaration/merode/be.vamaralds.merode.cli/index.html
+$dokka.location:be.vamaralds.merode.cli/StartCommand///PointingToDeclaration/merode/be.vamaralds.merode.cli/-start-command/index.html
+$dokka.location:be.vamaralds.merode.cli/StartCommand/StartCommand/#kotlin.Array[kotlin.String]/PointingToDeclaration/merode/be.vamaralds.merode.cli/-start-command/-start-command.html
+$dokka.location:be.vamaralds.merode.cli/StartCommand/modelFile/#/PointingToDeclaration/merode/be.vamaralds.merode.cli/-start-command/model-file.html
+$dokka.location:be.vamaralds.merode.cli/StartCommand/run/#/PointingToDeclaration/merode/be.vamaralds.merode.cli/-start-command/run.html
 $dokka.location:be.vamaralds.merode.common////PointingToDeclaration/merode/be.vamaralds.merode.common/index.html
 $dokka.location:be.vamaralds.merode.common/MerodeError///PointingToDeclaration/merode/be.vamaralds.merode.common/-merode-error/index.html
 $dokka.location:be.vamaralds.merode.common/MerodeError/MerodeError/#kotlin.String?/PointingToDeclaration/merode/be.vamaralds.merode.common/-merode-error/-merode-error.html
@@ -49,10 +55,13 @@ $dokka.location:be.vamaralds.merode.instance/AttributeValue/value/#/PointingToDe
 $dokka.location:be.vamaralds.merode.instance/BusinessObject.Companion///PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/-companion/index.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject.Companion/fromJsonString/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/-companion/from-json-string.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject///PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/index.html
-$dokka.location:be.vamaralds.merode.instance/BusinessObject/BusinessObject/#be.vamaralds.merode.model.BusinessObjectType#kotlin.Long#be.vamaralds.merode.model.State#kotlin.collections.Set[be.vamaralds.merode.instance.Property]/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/-business-object.html
+$dokka.location:be.vamaralds.merode.instance/BusinessObject/BusinessObject/#be.vamaralds.merode.model.BusinessObjectType#kotlin.Long#be.vamaralds.merode.model.State#kotlin.collections.Set[be.vamaralds.merode.instance.Property]#kotlin.collections.MutableMap[kotlin.String,be.vamaralds.merode.instance.BusinessObject]/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/-business-object.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject/get/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/get.html
-$dokka.location:be.vamaralds.merode.instance/BusinessObject/handleEvent/#be.vamaralds.merode.instance.Event/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/handle-event.html
+$dokka.location:be.vamaralds.merode.instance/BusinessObject/handleEvent/#be.vamaralds.merode.store.BusinessObjectStore#be.vamaralds.merode.instance.Event/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/handle-event.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject/id/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/id.html
+$dokka.location:be.vamaralds.merode.instance/BusinessObject/master/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/master.html
+$dokka.location:be.vamaralds.merode.instance/BusinessObject/masters/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/masters.html
+$dokka.location:be.vamaralds.merode.instance/BusinessObject/properties/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/properties.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject/state/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/state.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject/toJsonString/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/to-json-string.html
 $dokka.location:be.vamaralds.merode.instance/BusinessObject/toString/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-business-object/to-string.html
@@ -60,9 +69,10 @@ $dokka.location:be.vamaralds.merode.instance/BusinessObject/type/#/PointingToDec
 $dokka.location:be.vamaralds.merode.instance/Event.Companion///PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/-companion/index.html
 $dokka.location:be.vamaralds.merode.instance/Event.Companion/fromJsonString/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/-companion/from-json-string.html
 $dokka.location:be.vamaralds.merode.instance/Event///PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/index.html
-$dokka.location:be.vamaralds.merode.instance/Event/Event/#be.vamaralds.merode.model.EventType#kotlin.Long#kotlin.Long#kotlin.collections.Set[be.vamaralds.merode.instance.Property]/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/-event.html
+$dokka.location:be.vamaralds.merode.instance/Event/Event/#be.vamaralds.merode.model.EventType#kotlin.Long#kotlin.Long#kotlin.collections.Set[be.vamaralds.merode.instance.Property]#kotlin.collections.Map[kotlin.String,kotlin.Long]/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/-event.html
 $dokka.location:be.vamaralds.merode.instance/Event/eventId/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/event-id.html
 $dokka.location:be.vamaralds.merode.instance/Event/get/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/get.html
+$dokka.location:be.vamaralds.merode.instance/Event/masterRefs/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/master-refs.html
 $dokka.location:be.vamaralds.merode.instance/Event/objectId/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/object-id.html
 $dokka.location:be.vamaralds.merode.instance/Event/properties/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/properties.html
 $dokka.location:be.vamaralds.merode.instance/Event/toJsonString/#/PointingToDeclaration/merode/be.vamaralds.merode.instance/-event/to-json-string.html
@@ -114,7 +124,7 @@ $dokka.location:be.vamaralds.merode.model/BusinessObjectType/BusinessObjectType/
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/attribute/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/attribute.html
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/attributes/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/attributes.html
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/invoke/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/invoke.html
-$dokka.location:be.vamaralds.merode.model/BusinessObjectType/invoke/#kotlin.Long#be.vamaralds.merode.model.State#kotlin.Array[kotlin.Any?]/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/invoke.html
+$dokka.location:be.vamaralds.merode.model/BusinessObjectType/invoke/#kotlin.Long#be.vamaralds.merode.model.State#kotlin.collections.Map[kotlin.String,be.vamaralds.merode.instance.BusinessObject]#kotlin.Array[kotlin.Any?]/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/invoke.html
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/invoke/#kotlin.Long#be.vamaralds.merode.model.State#kotlin.collections.Map[kotlin.String,kotlin.Any?]/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/invoke.html
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/name/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/name.html
 $dokka.location:be.vamaralds.merode.model/BusinessObjectType/stateMachine/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-business-object-type/state-machine.html
@@ -130,16 +140,33 @@ $dokka.location:be.vamaralds.merode.model/EventType///PointingToDeclaration/mer
 $dokka.location:be.vamaralds.merode.model/EventType/EventType/#kotlin.String#be.vamaralds.merode.model.BusinessObjectType#be.vamaralds.merode.model.EventType.OwnedEffect#kotlin.collections.Set[be.vamaralds.merode.model.Attribute]/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/-event-type.html
 $dokka.location:be.vamaralds.merode.model/EventType/attribute/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/attribute.html
 $dokka.location:be.vamaralds.merode.model/EventType/attributes/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/attributes.html
-$dokka.location:be.vamaralds.merode.model/EventType/invoke/#kotlin.Long#kotlin.Long#kotlin.collections.Map[kotlin.String,kotlin.Any?]/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/invoke.html
+$dokka.location:be.vamaralds.merode.model/EventType/invoke/#kotlin.Long#kotlin.Long#kotlin.collections.Map[kotlin.String,kotlin.Any?]#kotlin.collections.Map[kotlin.String,kotlin.Long]/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/invoke.html
 $dokka.location:be.vamaralds.merode.model/EventType/name/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/name.html
 $dokka.location:be.vamaralds.merode.model/EventType/ownerEffect/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/owner-effect.html
 $dokka.location:be.vamaralds.merode.model/EventType/ownerType/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-event-type/owner-type.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type.MandatoryMany///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}merode/be.vamaralds.merode.model/-existence-dependency/-type/-mandatory-many/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type.MandatoryOne///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}merode/be.vamaralds.merode.model/-existence-dependency/-type/-mandatory-one/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type.OptionalMany///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}merode/be.vamaralds.merode.model/-existence-dependency/-type/-optional-many/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type.OptionalOne///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}merode/be.vamaralds.merode.model/-existence-dependency/-type/-optional-one/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type///PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/-type/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type/valueOf/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/-type/value-of.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency.Type/values/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/-type/values.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency///PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/index.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency/ExistenceDependency/#kotlin.String#be.vamaralds.merode.model.BusinessObjectType#be.vamaralds.merode.model.BusinessObjectType#be.vamaralds.merode.model.ExistenceDependency.Type/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/-existence-dependency.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency/dependent/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/dependent.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency/master/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/master.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency/name/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/name.html
+$dokka.location:be.vamaralds.merode.model/ExistenceDependency/type/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-existence-dependency/type.html
 $dokka.location:be.vamaralds.merode.model/Model///PointingToDeclaration/merode/be.vamaralds.merode.model/-model/index.html
-$dokka.location:be.vamaralds.merode.model/Model/Model/#kotlin.collections.Set[be.vamaralds.merode.model.BusinessObjectType]/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/-model.html
+$dokka.location:be.vamaralds.merode.model/Model/Model/#kotlin.collections.Set[be.vamaralds.merode.model.BusinessObjectType]#kotlin.collections.Set[be.vamaralds.merode.model.ExistenceDependency]/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/-model.html
 $dokka.location:be.vamaralds.merode.model/Model/eventTypes/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/event-types.html
 $dokka.location:be.vamaralds.merode.model/Model/eventTypesByName/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/event-types-by-name.html
+$dokka.location:be.vamaralds.merode.model/Model/existenceDependencies/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/existence-dependencies.html
+$dokka.location:be.vamaralds.merode.model/Model/existenceDependency/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/existence-dependency.html
+$dokka.location:be.vamaralds.merode.model/Model/masters/#be.vamaralds.merode.model.BusinessObjectType/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/masters.html
 $dokka.location:be.vamaralds.merode.model/Model/objectType/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/object-type.html
 $dokka.location:be.vamaralds.merode.model/Model/objectTypes/#/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/object-types.html
+$dokka.location:be.vamaralds.merode.model/Model/requiredMasterRefs/#be.vamaralds.merode.model.EventType/PointingToDeclaration/merode/be.vamaralds.merode.model/-model/required-master-refs.html
 $dokka.location:be.vamaralds.merode.model/ModelError///PointingToDeclaration/merode/be.vamaralds.merode.model/-model-error/index.html
 $dokka.location:be.vamaralds.merode.model/ModelError/ModelError/#kotlin.String?/PointingToDeclaration/merode/be.vamaralds.merode.model/-model-error/-model-error.html
 $dokka.location:be.vamaralds.merode.model/ModelParsingError///PointingToDeclaration/merode/be.vamaralds.merode.model/-model-parsing-error/index.html
@@ -889,6 +916,7 @@ $dokka.location:be.vamaralds.merode.store/BusinessObjectStore/getAll/#/PointingT
 $dokka.location:be.vamaralds.merode.store/BusinessObjectStore/getAll/#kotlin.String/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/get-all.html
 $dokka.location:be.vamaralds.merode.store/BusinessObjectStore/size/#/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/size.html
 $dokka.location:be.vamaralds.merode.store/BusinessObjectStore/update/#be.vamaralds.merode.instance.BusinessObject/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/update.html
+$dokka.location:be.vamaralds.merode.store/BusinessObjectStore/update/#kotlin.collections.Collection[be.vamaralds.merode.instance.BusinessObject]/PointingToDeclaration/merode/be.vamaralds.merode.store/-business-object-store/update.html
 $dokka.location:be.vamaralds.merode.store/DuplicateRecordError///PointingToDeclaration/merode/be.vamaralds.merode.store/-duplicate-record-error/index.html
 $dokka.location:be.vamaralds.merode.store/DuplicateRecordError/DuplicateRecordError/#kotlin.String?/PointingToDeclaration/merode/be.vamaralds.merode.store/-duplicate-record-error/-duplicate-record-error.html
 $dokka.location:be.vamaralds.merode.store/EventStore///PointingToDeclaration/merode/be.vamaralds.merode.store/-event-store/index.html
@@ -923,9 +951,11 @@ $dokka.location:be.vamaralds.merode.store/StoreError/StoreError/#kotlin.String?/
 $dokka.location:be.vamaralds.merode////PointingToDeclaration/merode/be.vamaralds.merode/index.html
 $dokka.location:be.vamaralds.merode/MerodeApplication///PointingToDeclaration/merode/be.vamaralds.merode/-merode-application/index.html
 $dokka.location:be.vamaralds.merode/MerodeApplication/logger/#/PointingToDeclaration/merode/be.vamaralds.merode/-merode-application/logger.html
+$dokka.location:be.vamaralds.merode/MerodeApplication/start/#java.nio.file.Path#kotlin.Array[kotlin.String]/PointingToDeclaration/merode/be.vamaralds.merode/-merode-application/start.html
 be.vamaralds.merode
 be.vamaralds.merode.api
 be.vamaralds.merode.api.model
+be.vamaralds.merode.cli
 be.vamaralds.merode.common
 be.vamaralds.merode.config
 be.vamaralds.merode.instance
