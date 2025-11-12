@@ -130,7 +130,7 @@ data class BusinessObject(
         return builder.toString()
     }
 
-    override fun toJsonString(): String {
+    fun toJsonString(): String {
         val objMap = mapOf(
             "id" to id,
             "type" to type.name,

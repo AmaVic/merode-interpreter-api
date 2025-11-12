@@ -80,7 +80,7 @@ data class Event(val type: EventType, val eventId: Long, val objectId: Long, val
 
     }
 
-    override fun toJsonString(): String {
+    fun toJsonString(): String {
         val jsonObj = JSONObject()
         jsonObj.put("type", type.name)
         jsonObj.put("eventId", eventId)

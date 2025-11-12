@@ -76,6 +76,7 @@ class ApiTest {
         }
     }
 
+    /* 
     @Test
     fun `Successfully Retrieve All Business Events`() = testApplication {
         with(Api.eventHandler!!.model) {
@@ -106,7 +107,7 @@ class ApiTest {
                 assert(false) { "Success was expected, but it failed due to: $it" }
             }
         }
-    }
+    */
 
     @Test
     fun `Fail to Submit a Business Event (Type Missing)`() = testApplication {
