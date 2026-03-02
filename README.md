@@ -1,5 +1,6 @@
 # Merode Interpreter
-[![Build](https://github.com/AmaVic/merode/actions/workflows/build.yml/badge.svg)](https://github.com/AmaVic/merode/actions/workflows/build.yml) [![Test](https://github.com/AmaVic/merode/actions/workflows/test.yml/badge.svg)](https://github.com/AmaVic/merode/actions/workflows/test.yml) [![Doc](https://github.com/AmaVic/merode/actions/workflows/doc.yml/badge.svg)](https://github.com/AmaVic/merode/actions/workflows/doc.yml)
+ [![Build](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/build.yml/badge.svg)](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/build.yml) [![Test](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/test.yml/badge.svg)](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/test.yml) [![Doc](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/doc.yml/badge.svg)](https://github.com/AmaVic/merode-interpreter-api/actions/workflows/doc.yml)
+ 
 ## Overview 
 This tool enables the automated creation of [Merode](http://merode.econ.kuleuven.be)-based REST APIs and applications:
 * You design a Merode model using the [Merlin](https://merlin-academic.com) tool, and download the model
